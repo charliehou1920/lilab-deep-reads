@@ -1,0 +1,565 @@
+<title>Li Lab Deep Reads</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
+<style>
+/* Layout: sticky bar, one reading column (max 1140px). Paper pages pair a wide graph stage with
+   a narrow evidence rail. Palette from H&E staining: hematoxylin indigo, eosin rose, one hue per
+   research topic. */
+:root {
+  --bg: #f5f5f9; --surface: #fff; --surface-2: #f0eff6; --ink: #1c1b2e; --ink-2: #474560;
+  --ink-3: #78758f; --line: #e2e0ec; --hema: #3d3a8c; --hema-soft: #e8e7f6; --eosin: #b83a62;
+  --eosin-soft: #f8e6ec; --t-brca1: #3d3a8c; --t-esr1: #b83a62; --t-igf1r: #a35f00; --t-ecdna: #0e746e;
+  --good: #2c7a4b; --good-soft: #e3f2e9; --warn: #9a5c00; --warn-soft: #fbf0dc; --bad: #b3261e;
+  --kg-edge: #8f8ca6;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12111b; --surface: #1b1a27; --surface-2: #232233; --ink: #ecebf5; --ink-2: #bdbad0;
+  --ink-3: #8c89a3; --line: #2e2c40; --hema: #a3a0f2; --hema-soft: #29274a; --eosin: #f08aa9;
+  --eosin-soft: #3a2230; --t-brca1: #a3a0f2; --t-esr1: #f08aa9; --t-igf1r: #e3a54f; --t-ecdna: #4fc4b8;
+  --good: #6cc995; --good-soft: #1d3327; --warn: #e3a54f; --warn-soft: #3a2d17; --bad: #f2867f;
+  --kg-edge: #6f6c88; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #12111b; --surface: #1b1a27; --surface-2: #232233; --ink: #ecebf5; --ink-2: #bdbad0;
+  --ink-3: #8c89a3; --line: #2e2c40; --hema: #a3a0f2; --hema-soft: #29274a; --eosin: #f08aa9;
+  --eosin-soft: #3a2230; --t-brca1: #a3a0f2; --t-esr1: #f08aa9; --t-igf1r: #e3a54f; --t-ecdna: #4fc4b8;
+  --good: #6cc995; --good-soft: #1d3327; --warn: #e3a54f; --warn-soft: #3a2d17; --bad: #f2867f;
+  --kg-edge: #6f6c88; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--font-body); }
+a { color: var(--hema); text-underline-offset: 2px; }
+a:hover { color: var(--eosin); }
+button, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--eosin); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.topbar-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 11px; }
+.brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; text-decoration: none; color: inherit; }
+.brand b { font: 600 20px/1 var(--font-display); }
+.brand span { color: var(--ink-3); font-size: 12px; letter-spacing: .07em; text-transform: uppercase; }
+.tabs { display: flex; gap: 4px; }
+.tab { padding: 6px 13px; border-radius: 999px; text-decoration: none; color: var(--ink-2); font-weight: 500; font-size: 14px; }
+.tab:hover { background: var(--surface-2); color: var(--ink); }
+.tab[aria-current="page"] { background: var(--hema); color: var(--surface); }
+.weekpick { font-size: 13px; color: var(--ink-3); display: flex; gap: 6px; align-items: center; }
+.weekpick select { background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; max-width: 190px; }
+
+main { max-width: 1140px; margin: 0 auto; padding-block: 30px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.view { display: flex; flex-direction: column; gap: 24px; }
+.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.lede h1 { font: 600 34px/1.16 var(--font-display); margin: 8px 0 12px; max-width: 26ch; }
+.lede p { margin: 0; max-width: 70ch; color: var(--ink-2); font-size: 16.5px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; min-width: 0; }
+.panel h2 { font: 600 21px/1.25 var(--font-display); margin: 0 0 12px; }
+.panel h3 { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); margin: 20px 0 8px; font-weight: 600; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+.muted { color: var(--ink-3); }
+.note { font-size: 13px; color: var(--ink-3); }
+
+.chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.chip { display: inline-flex; align-items: center; font-size: 11.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); white-space: nowrap; }
+.chip.topic { background: color-mix(in srgb, var(--tc) 14%, var(--surface)); color: var(--tc); }
+.chip.tier1 { background: var(--hema); color: var(--surface); }
+.chip.tier2 { background: var(--hema-soft); color: var(--hema); }
+.chip.pre { background: var(--eosin-soft); color: var(--eosin); }
+.chip.oa { background: var(--good-soft); color: var(--good); }
+
+/* Deep read cards */
+.cards { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; border-left: 4px solid var(--tc, var(--hema)); }
+.card .num { font: 600 11px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.card h3 { font: 600 20px/1.3 var(--font-display); margin: 0; text-transform: none; letter-spacing: 0; color: var(--ink); }
+.card h3 a { color: inherit; text-decoration: none; }
+.card h3 a:hover { color: var(--hema); }
+.card .meta { font-size: 13.5px; color: var(--ink-3); }
+.card .meta i { color: var(--ink-2); }
+.card .take { font: 400 16.5px/1.5 var(--font-display); border-left: 3px solid var(--eosin); padding-left: 13px; color: var(--ink); }
+.card .acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 13px; cursor: pointer; font-size: 13.5px; font-weight: 500; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn:hover { border-color: var(--hema); color: var(--hema); }
+.btn.primary { background: var(--hema); border-color: var(--hema); color: var(--surface); }
+.btn.primary:hover { filter: brightness(1.08); color: var(--surface); }
+
+/* Archive */
+.arch-month { font: 600 13px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin: 6px 0 2px; }
+.arch-week { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.arch-week .top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.arch-week .wk { font: 600 17px/1.3 var(--font-display); }
+.arch-week ol { margin: 0; padding-left: 20px; display: grid; gap: 5px; font-size: 14px; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow-x: auto; max-width: 100%; background: var(--surface); scrollbar-width: none; }
+.seg button { border: 0; background: none; padding: 6px 13px; cursor: pointer; font-size: 13px; color: var(--ink-2); display: inline-flex; gap: 6px; align-items: center; white-space: nowrap; flex: none; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.dot { width: 9px; height: 9px; border-radius: 3px; background: var(--tc, var(--ink-3)); flex: none; }
+.empty { padding: 28px; text-align: center; color: var(--ink-3); border: 1px dashed var(--line); border-radius: 12px; }
+
+/* Paper page */
+.paper-head h1 { font: 600 31px/1.22 var(--font-display); margin: 8px 0 8px; max-width: 32ch; }
+.takeaway { font: 500 19px/1.45 var(--font-display); border-left: 3px solid var(--eosin); padding-left: 14px; margin: 6px 0 0; max-width: 68ch; }
+.graph-panel { padding: 0; overflow: hidden; }
+.graph-panel header { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+.graph-panel header h2 { margin: 0; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+.cy { height: 560px; min-width: 0; background: var(--surface); }
+.cy.logic { height: 640px; }
+.rail { border-left: 1px solid var(--line); padding: 14px 16px; background: var(--surface-2); font-size: 13.5px; color: var(--ink-2); overflow-y: auto; max-height: 640px; }
+.rail .t { font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.rail ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 5px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 10px 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.legend .ln { display: inline-block; width: 18px; border-top: 2px solid; margin-right: 5px; vertical-align: 3px; }
+.fallback { padding: 16px 20px; }
+.methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.mcard { border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; min-width: 0; }
+.mcard h4 { margin: 0 0 6px; font-size: 15px; }
+.mcard .lbl { font-size: 11px; font-weight: 700; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; margin-top: 9px; }
+.mcard p { margin: 2px 0 0; font-size: 14px; }
+dl.concepts { margin: 0; display: grid; gap: 11px; }
+dl.concepts dt { font-weight: 600; }
+dl.concepts dd { margin: 2px 0 0; color: var(--ink-2); font-size: 14px; }
+.figs { display: grid; gap: 12px; }
+.fig { border: 1px solid var(--line); border-radius: 10px; padding: 13px 15px; }
+.fig .fl { font-weight: 700; color: var(--hema); font-family: var(--font-mono); font-size: 13px; }
+.fig .g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 8px; font-size: 13.5px; }
+.fig figure { margin: 10px 0 0; }
+.fig img { display: block; width: 100%; max-height: 520px; object-fit: contain; object-position: left top; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+.fig figcaption { font-size: 11.5px; color: var(--ink-3); margin-top: 5px; }
+.fig .g3 .lbl { font-size: 11px; font-weight: 700; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
+.table-wrap { overflow-x: auto; }
+table.findings { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.findings td { border-top: 1px solid var(--line); padding: 10px 8px; vertical-align: top; }
+table.findings td.ev { color: var(--ink-3); font-size: 13px; width: 34%; }
+.strength { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.strength.strong { background: var(--good-soft); color: var(--good); }
+.strength.moderate { background: var(--warn-soft); color: var(--warn); }
+.strength.suggestive { background: var(--eosin-soft); color: var(--eosin); }
+.lab-box { background: var(--good-soft); border-radius: 10px; padding: 15px 17px; color: var(--ink); }
+footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left, 0px)) 40px; color: var(--ink-3); font-size: 12.5px; }
+
+@media (max-width: 900px) {
+  .stage { grid-template-columns: 1fr; }
+  .rail { border-left: 0; border-top: 1px solid var(--line); max-height: none; }
+  .methods, .grid2, .fig .g3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .lede h1, .paper-head h1 { font-size: 25px; }
+  .cy { height: 440px; } .cy.logic { height: 520px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#latest"><b>Li Lab Deep Reads</b><span id="brand-sub">Weekly</span></a>
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab" href="#latest" data-route="latest">This week</a>
+      <a class="tab" href="#archive" data-route="archive">Archive</a>
+    </nav>
+    <label class="weekpick" for="week-select">Week <select id="week-select"></select></label>
+  </div>
+</header>
+
+<main id="app"><div class="view"><div class="empty">Loading...</div></div></main>
+<footer id="foot"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dagre@0.8.5/dist/dagre.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/layout-base@2.0.1/layout-base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cose-base@2.2.0/cose-base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+<script>
+(function () {
+  "use strict";
+  var S = { index: null, week: null, weekId: null, cache: {}, cys: [], archTopic: "all" };
+  var TOPIC_VAR = { brca1: "--t-brca1", esr1_ft_stroma: "--t-esr1", igf1r: "--t-igf1r", ecdna: "--t-ecdna" };
+  var app = document.getElementById("app");
+
+  if (window.cytoscape) {
+    try { if (window.cytoscapeDagre) cytoscape.use(cytoscapeDagre); } catch (e) {}
+    try { if (window.cytoscapeFcose) cytoscape.use(cytoscapeFcose); } catch (e) {}
+  }
+
+  function h(tag, attrs) {
+    var el = document.createElement(tag), kids = [].slice.call(arguments, 2);
+    for (var k in attrs || {}) {
+      var v = attrs[k];
+      if (v == null || v === false) continue;
+      if (k === "class") el.className = v;
+      else if (k.slice(0, 2) === "on") el.addEventListener(k.slice(2), v);
+      else el.setAttribute(k, v === true ? "" : v);
+    }
+    kids.reduce(function flat(a, x) { return a.concat(x); }, []).forEach(function (kid) {
+      if (kid == null || kid === false) return;
+      el.append(kid instanceof Node ? kid : document.createTextNode(String(kid)));
+    });
+    return el;
+  }
+  function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function topicColor(id) { return "var(" + (TOPIC_VAR[id] || "--ink-3") + ")"; }
+  function topicName(id) {
+    var all = (S.week && S.week.topics) || (S.index && S.index.topics) || [];
+    for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i].short;
+    return id;
+  }
+  function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
+  function wrapText(t, n) {
+    var w = String(t).split(" "), lines = [], cur = "";
+    w.forEach(function (x) { if ((cur + " " + x).trim().length > n) { lines.push(cur.trim()); cur = x; } else cur += " " + x; });
+    if (cur.trim()) lines.push(cur.trim());
+    return lines.join("\n");
+  }
+  function link(p) { return p.doi ? "https://doi.org/" + p.doi : (p.oa_url || null); }
+  function tierChip(t) {
+    if (t === 1) return h("span", { class: "chip tier1" }, "Flagship journal");
+    if (t === 2) return h("span", { class: "chip tier2" }, "Top field journal");
+    return null;
+  }
+  function topicChips(p) {
+    return (p.topics || []).map(function (t) {
+      return h("span", { class: "chip topic", style: "--tc:" + topicColor(t) }, topicName(t));
+    });
+  }
+  function accessChip(p) {
+    if (p.is_preprint) return h("span", { class: "chip pre" }, "Preprint");
+    if (p.is_open_access) return h("span", { class: "chip oa" }, "Open access");
+    return null;
+  }
+
+  function loadJSON(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(url + " " + r.status);
+      return r.json();
+    });
+  }
+  function loadWeek(id) {
+    var meta = null;
+    S.index.weeks.forEach(function (w) { if (w.id === id) meta = w; });
+    if (!meta) meta = S.index.weeks[0];
+    if (S.cache[meta.id]) { S.week = S.cache[meta.id]; S.weekId = meta.id; afterWeek(meta); return Promise.resolve(); }
+    return loadJSON(meta.file).then(function (w) {
+      S.cache[meta.id] = w; S.week = w; S.weekId = meta.id; afterWeek(meta);
+    });
+  }
+  function afterWeek(meta) {
+    document.getElementById("week-select").value = meta.id;
+    document.getElementById("brand-sub").textContent = meta.label;
+    route();
+  }
+
+  // ---- views -------------------------------------------------------------
+  function setTab(name) {
+    document.querySelectorAll(".tab").forEach(function (a) {
+      a.setAttribute("aria-current", a.dataset.route === name ? "page" : "false");
+    });
+  }
+
+  function viewLatest() {
+    var W = S.week, ps = W.papers || [];
+    return h("div", { class: "view" },
+      h("section", { class: "lede" },
+        h("div", { class: "eyebrow" }, "Week of " + W.label + " · " + W.topic_label + " · " + ps.length + " deep reads"),
+        h("h1", {}, W.headline || "This week's deep reads"),
+        W.summary ? h("p", {}, W.summary) : null),
+      ps.length ? h("div", { class: "cards" }, ps.map(function (p, i) { return card(p, i); })) : h("div", { class: "empty" }, "No deep reads for this week."),
+      (W.cross_links && W.cross_links.length) || (W.actions && W.actions.length) ?
+        h("section", { class: "grid2" },
+          W.cross_links && W.cross_links.length ? h("div", { class: "panel" }, h("h2", {}, "Connections worth noticing"),
+            h("ul", { class: "plain" }, W.cross_links.map(function (x) { return h("li", {}, x); }))) : null,
+          W.actions && W.actions.length ? h("div", { class: "panel" }, h("h2", {}, "Suggested next steps"),
+            h("ul", { class: "plain" }, W.actions.map(function (x) { return h("li", {}, x); }))) : null) : null);
+  }
+
+  function card(p, i) {
+    var href = link(p), r = p.reading;
+    return h("article", { class: "card", style: "--tc:" + topicColor((p.topics || [])[0]) },
+      h("div", { class: "num" }, "Paper " + (i + 1)),
+      h("h3", {}, h("a", { href: "#p-" + p.key }, r.bibliographic.title || p.title)),
+      h("div", { class: "meta" }, (p.first_author ? p.first_author + " et al. · " : ""), h("i", {}, p.journal || ""), " · " + (p.pub_date || "")),
+      h("div", { class: "chips" }, topicChips(p), tierChip(p.tier), accessChip(p)),
+      h("div", { class: "take" }, r.one_line_takeaway),
+      h("div", { class: "acts" },
+        h("a", { class: "btn primary", href: "#p-" + p.key }, "Open deep read"),
+        href ? h("a", { class: "btn", href: href, target: "_blank", rel: "noopener" }, "Original paper") : null));
+  }
+
+  function viewArchive() {
+    var weeks = S.index.weeks.slice().sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
+    if (S.archTopic !== "all") weeks = weeks.filter(function (w) { return (w.topics || []).indexOf(S.archTopic) >= 0; });
+    var months = [], seen = {};
+    weeks.forEach(function (w) {
+      var m = (w.date || "").slice(0, 7);
+      if (!seen[m]) { seen[m] = []; months.push(m); }
+      seen[m].push(w);
+    });
+    var topics = (S.index.topics || []).map(function (t) { return [t.id, t.short, topicColor(t.id)]; });
+    var seg = h("div", { class: "seg", role: "group" }, [["all", "All topics", null]].concat(topics).map(function (o) {
+      return h("button", { type: "button", "aria-pressed": String(S.archTopic === o[0]),
+        onclick: function () { S.archTopic = o[0]; route(true); } },
+        o[2] ? h("span", { class: "dot", style: "--tc:" + o[2] }) : null, o[1]);
+    }));
+    return h("div", { class: "view" },
+      h("section", { class: "lede" },
+        h("div", { class: "eyebrow" }, "Archive"),
+        h("h1", {}, S.index.weeks.length + (S.index.weeks.length === 1 ? " week" : " weeks") + " on record"),
+        h("p", {}, "Every weekly set of deep reads, newest first. Each paper keeps its logic chain and knowledge graph.")),
+      h("div", { class: "filters" }, seg),
+      months.length ? months.map(function (m) {
+        return h("section", { class: "view", style: "gap:10px" },
+          h("div", { class: "arch-month" }, monthLabel(m)),
+          seen[m].map(function (w) {
+            return h("article", { class: "arch-week" },
+              h("div", { class: "top" },
+                h("div", { class: "wk" }, h("a", { href: "#w-" + w.id, style: "color:inherit;text-decoration:none" }, w.label)),
+                h("div", { class: "chips" }, (w.topics || []).map(function (t) {
+                  return h("span", { class: "chip topic", style: "--tc:" + topicColor(t) }, topicName(t));
+                }), h("span", { class: "chip" }, w.count + " deep reads"))),
+              w.headline ? h("div", { class: "note" }, w.headline) : null,
+              h("ol", {}, (w.titles || []).map(function (t) { return h("li", {}, t); })),
+              h("div", {}, h("a", { class: "btn", href: "#w-" + w.id }, "Open this week")));
+          }));
+      }) : h("div", { class: "empty" }, "No weeks for this topic yet."));
+  }
+  function monthLabel(m) {
+    var names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var parts = m.split("-");
+    return names[Number(parts[1]) - 1] + " " + parts[0];
+  }
+
+  // ---- paper page --------------------------------------------------------
+  var ENTITY = { gene: "#4f5bd5", protein: "#6a74e0", pathway: "#7b4fc9", cell_type: "#2f8a55", cell_state: "#6a9a1f",
+    tissue: "#14838a", disease: "#c0392b", phenotype: "#d4661a", drug: "#a83fbf", method: "#5c6070", dataset: "#8a8f9c", other: "#8a8f9c" };
+  function logicColor(kind) {
+    return { question: "var(--hema)", background: "var(--ink-3)", hypothesis: "#7b4fc9", approach: "#14838a",
+      result: "#d4661a", conclusion: "var(--good)", implication: "var(--eosin)" }[kind] || "var(--ink-3)";
+  }
+  function resolveColor(v) { return v.indexOf("var(") === 0 ? css(v.slice(4, -1)) : v; }
+  var POS = ["activates", "upregulates", "causes", "enriched_in"], NEG = ["inhibits", "downregulates", "prevents", "depleted_in"];
+  function destroyGraphs() { S.cys.forEach(function (c) { try { c.destroy(); } catch (e) {} }); S.cys = []; }
+  function readableZoom(cy, el, minZ) {
+    if (cy.zoom() >= minZ) return;
+    var bb = cy.elements().boundingBox();
+    cy.zoom(minZ);
+    cy.pan({ x: (el.clientWidth - bb.w * minZ) / 2 - bb.x1 * minZ, y: 24 - bb.y1 * minZ });
+  }
+  function fitAll() {
+    S.cys.forEach(function (c) {
+      c.elements().removeClass("faded"); c.fit(null, 24);
+      if (c.container() && c.container().classList.contains("logic")) readableZoom(c, c.container(), 0.9);
+    });
+  }
+
+  function viewPaper(key) {
+    var p = null;
+    (S.week.papers || []).forEach(function (x) { if (x.key === key) p = x; });
+    if (!p) return h("div", { class: "view" }, h("div", { class: "empty" }, "Not in this week. ", h("a", { href: "#archive" }, "Open the archive")));
+    var r = p.reading, g = p.graphs, href = link(p);
+    var logicRail = h("div", { class: "rail", id: "rail-logic" }, h("div", { class: "t" }, "Click a step"),
+      "Each box is one step of the paper's argument. Click it for the detail and the figures behind it.");
+    var kgRail = h("div", { class: "rail", id: "rail-kg" }, h("div", { class: "t" }, "Click a node or an edge"),
+      "Solid edges are new findings of this paper; dashed edges are background knowledge it relies on. Green arrows activate or increase, red flat ends inhibit or decrease.");
+    var view = h("div", { class: "view" },
+      h("div", {}, h("a", { href: "#latest", class: "note" }, "← " + S.week.label)),
+      h("section", { class: "paper-head" },
+        h("div", { class: "chips" }, topicChips(p), tierChip(p.tier), accessChip(p), h("span", { class: "chip" }, "Lab relevance " + r.relevance_score + "/5")),
+        h("h1", {}, r.bibliographic.title || p.title),
+        h("div", { class: "note" }, (p.authors || (r.bibliographic.first_author + " et al.")) + " · ", h("i", {}, p.journal), " · " + p.pub_date + (href ? " · " : ""),
+          href ? h("a", { href: href, target: "_blank", rel: "noopener" }, p.doi ? "doi:" + p.doi : "Paper") : null),
+        h("p", { class: "takeaway" }, r.one_line_takeaway)),
+      h("section", { class: "panel" }, h("h2", {}, "In short"), h("p", { style: "margin:0;max-width:78ch" }, r.tldr),
+        p.source_note ? h("p", { class: "note", style: "margin:12px 0 0" }, p.source_note) : null),
+      h("section", { class: "panel graph-panel" },
+        h("header", {}, h("h2", {}, "Logic chain"), h("span", { class: "note" }, "Drag to move, scroll to zoom"),
+          h("button", { class: "btn", type: "button", onclick: fitAll }, "Re-center")),
+        h("div", { class: "stage" }, h("div", { class: "cy logic", id: "cy-logic", role: "img", "aria-label": "Logic chain of the paper's argument" }), logicRail),
+        h("div", { class: "legend" }, ["question", "background", "hypothesis", "approach", "result", "conclusion", "implication"].map(function (k) {
+          return h("span", {}, h("i", { style: "background:" + logicColor(k) }), k);
+        }), h("span", {}, h("span", { class: "ln", style: "border-color:var(--bad);border-top-style:dashed" }), "contradicts"))),
+      h("section", { class: "panel graph-panel" },
+        h("header", {}, h("h2", {}, "Knowledge graph"), h("button", { class: "btn", type: "button", onclick: fitAll }, "Re-center")),
+        h("div", { class: "stage" }, h("div", { class: "cy", id: "cy-kg", role: "img", "aria-label": "Knowledge graph of genes, cell types and pathways" }), kgRail),
+        h("div", { class: "legend" }, Object.keys(ENTITY).map(function (k) {
+          return h("span", {}, h("i", { style: "background:" + ENTITY[k] }), k.replace("_", " "));
+        }))),
+      h("section", { class: "grid2" },
+        h("div", { class: "panel" }, h("h2", {}, "Question and background"), h("p", {}, r.research_question),
+          h("h3", {}, "What was known"), h("p", { style: "margin:0" }, r.background)),
+        h("div", { class: "panel" }, h("h2", {}, "Study design"), h("p", { style: "margin:0" }, r.study_design))),
+      h("section", { class: "panel" }, h("h2", {}, "Key methods, explained"),
+        h("div", { class: "methods" }, r.key_methods.map(function (m) {
+          return h("div", { class: "mcard" }, h("h4", {}, m.name), h("p", {}, m.plain_explanation),
+            h("div", { class: "lbl" }, "How this paper used it"), h("p", {}, m.how_used),
+            h("div", { class: "lbl" }, "Why it matters"), h("p", {}, m.why_it_matters));
+        }))),
+      h("section", { class: "panel" }, h("h2", {}, "Key concepts"),
+        h("dl", { class: "concepts" }, r.key_concepts.map(function (c) { return [h("dt", {}, c.term), h("dd", {}, c.plain_definition)]; }))),
+      h("section", { class: "panel" }, h("h2", {}, "Key figures"),
+        p.figures_withheld ? h("p", { class: "note", style: "margin:-4px 0 12px" },
+          "The figure images are not reproduced here for subscription papers. Each figure is explained below; open the paper for the originals.") : null,
+        h("div", { class: "figs" }, r.figures.map(function (f) {
+          return h("div", { class: "fig" },
+            h("div", {}, h("span", { class: "fl" }, f.label), " · ", h("b", {}, f.title),
+              f.importance === "core" ? h("span", { class: "chip tier2", style: "margin-left:8px" }, "core") : null),
+            f.image ? h("figure", {},
+              h("img", { src: f.image, alt: f.label + ": " + f.title, loading: "lazy" }),
+              h("figcaption", {}, f.label + " as published, cropped from the paper.")) : null,
+            h("div", { class: "g3" },
+              h("div", {}, h("div", { class: "lbl" }, "Question"), f.question),
+              h("div", {}, h("div", { class: "lbl" }, "How to read it"), f.how_to_read),
+              h("div", {}, h("div", { class: "lbl" }, "Key result"), f.key_result)));
+        }))),
+      h("section", { class: "panel" }, h("h2", {}, "Main findings"),
+        h("div", { class: "table-wrap" }, h("table", { class: "findings" }, h("tbody", {}, r.key_findings.map(function (f) {
+          return h("tr", {}, h("td", { style: "width:100px" }, h("span", { class: "strength " + f.strength }, f.strength)),
+            h("td", {}, f.statement), h("td", { class: "ev" }, f.evidence));
+        }))))),
+      h("section", { class: "grid2" },
+        h("div", { class: "panel" }, h("h2", {}, "Limitations"), h("ul", { class: "plain" }, r.limitations.map(function (x) { return h("li", {}, x); }))),
+        h("div", { class: "panel" }, h("h2", {}, "Open questions"), h("ul", { class: "plain" }, r.open_questions.map(function (x) { return h("li", {}, x); })))),
+      h("section", { class: "panel" }, h("h2", {}, "Relevance to the lab"), h("div", { class: "lab-box" }, r.relevance_to_lab),
+        h("h3", {}, "For lab meeting"), h("ol", { class: "plain" }, r.discussion_questions.map(function (q) { return h("li", {}, q); }))));
+    requestAnimationFrame(function () { drawGraphs(g, logicRail, kgRail); });
+    return view;
+  }
+
+  function drawGraphs(g, logicRail, kgRail) {
+    destroyGraphs();
+    var logicEl = document.getElementById("cy-logic"), kgEl = document.getElementById("cy-kg");
+    if (!logicEl || !kgEl) return;
+    if (!window.cytoscape) {
+      logicEl.replaceWith(h("div", { class: "fallback" }, h("ol", { class: "plain" }, g.logic_chain.nodes.map(function (n) {
+        return h("li", {}, h("b", {}, n.kind + ": "), n.label);
+      }))));
+      kgEl.replaceWith(h("div", { class: "fallback" }, h("ul", { class: "plain" }, g.knowledge_graph.relations.map(function (r) {
+        function name(id) { var o = null; g.knowledge_graph.entities.forEach(function (e) { if (e.id === id) o = e; }); return o ? o.name : id; }
+        return h("li", {}, name(r.source) + " " + r.predicate.replace("_", " ") + " " + name(r.target) + " (" + (r.figure_ref || "text") + ")");
+      }))));
+      return;
+    }
+    var ink = css("--ink"), surface = css("--surface"), ink3 = css("--ink-3"), edge = css("--kg-edge"), good = css("--good"), bad = css("--bad");
+    var nodeIds = {}; g.logic_chain.nodes.forEach(function (n) { nodeIds[n.id] = 1; });
+    var lc = cytoscape({
+      container: logicEl, wheelSensitivity: 0.25, minZoom: 0.3, maxZoom: 2.5,
+      elements: g.logic_chain.nodes.map(function (n) {
+        return { data: { id: n.id, label: n.kind.toUpperCase() + "\n" + wrapText(n.label, 28) + (n.figure_refs && n.figure_refs.length ? "\n[" + n.figure_refs.join(", ") + "]" : ""),
+          color: resolveColor(logicColor(n.kind)), kind: n.kind, detail: n.detail, title: n.label, refs: (n.figure_refs || []).join(", ") } };
+      }).concat(g.logic_chain.edges.filter(function (e) { return nodeIds[e.source] && nodeIds[e.target]; }).map(function (e, i) {
+        return { data: { id: "le" + i, source: e.source, target: e.target,
+          label: ["leads_to", "shows"].indexOf(e.relation) >= 0 ? "" : e.relation.replace("_", " "), contra: e.relation === "contradicts" } };
+      })),
+      style: [
+        { selector: "node", style: { shape: "round-rectangle", "background-color": surface, "border-width": 2, "border-color": "data(color)",
+          label: "data(label)", "text-wrap": "wrap", "text-max-width": 220, "font-size": 12, color: ink, "text-valign": "center",
+          "text-halign": "center", width: 230, height: "label", padding: 10, "font-family": "IBM Plex Sans, sans-serif" } },
+        { selector: "edge", style: { width: 1.6, "curve-style": "bezier", "line-color": ink3, "target-arrow-color": ink3, "target-arrow-shape": "triangle",
+          label: "data(label)", "font-size": 10, color: ink3, "text-background-color": surface, "text-background-opacity": 1, "text-background-padding": 2 } },
+        { selector: "edge[?contra]", style: { "line-color": bad, "target-arrow-color": bad, "line-style": "dashed", color: bad } },
+        { selector: ".faded", style: { opacity: 0.18 } }
+      ],
+      layout: window.cytoscapeDagre ? { name: "dagre", rankDir: "TB", nodeSep: 30, rankSep: 46, padding: 20 } : { name: "breadthfirst", directed: true, padding: 20 }
+    });
+    readableZoom(lc, logicEl, 0.9);
+    lc.on("tap", "node", function (e) {
+      var d = e.target.data();
+      lc.elements().addClass("faded"); e.target.closedNeighborhood().removeClass("faded");
+      logicRail.innerHTML = '<div class="t">' + esc(d.kind.toUpperCase()) + ": " + esc(d.title) + "</div><p>" + esc(d.detail) + "</p>" +
+        (d.refs ? "<p><b>Evidence:</b> " + esc(d.refs) + "</p>" : "");
+    });
+    lc.on("tap", function (e) { if (e.target === lc) lc.elements().removeClass("faded"); });
+    S.cys.push(lc);
+
+    var kg = g.knowledge_graph, eids = {};
+    kg.entities.forEach(function (x) { eids[x.id] = 1; });
+    function nodeW(n) { return Math.min(120, String(n.data("label")).length * 6.6) + 20; }
+    function nodeH(n) { return Math.max(1, Math.ceil(String(n.data("label")).length * 6.6 / 120)) * 14 + 12; }
+    var kc = cytoscape({
+      container: kgEl, wheelSensitivity: 0.25, minZoom: 0.3, maxZoom: 3,
+      elements: kg.entities.map(function (x) {
+        return { data: { id: x.id, label: x.name, type: x.type, description: x.description, color: ENTITY[x.type] || ENTITY.other } };
+      }).concat(kg.relations.filter(function (r) { return eids[r.source] && eids[r.target]; }).map(function (r, i) {
+        return { data: { id: "r" + i, source: r.source, target: r.target, predicate: r.predicate.replace(/_/g, " "),
+          evidence: r.evidence, figure: r.figure_ref, confidence: r.confidence, novel: r.is_new_finding,
+          color: POS.indexOf(r.predicate) >= 0 ? good : NEG.indexOf(r.predicate) >= 0 ? bad : edge,
+          arrow: NEG.indexOf(r.predicate) >= 0 ? "tee" : "triangle" } };
+      })),
+      style: [
+        { selector: "node", style: { shape: "round-rectangle", "background-color": "data(color)", label: "data(label)", color: "#fff",
+          "font-size": 12, "font-weight": 600, "text-valign": "center", "text-halign": "center", "text-wrap": "wrap",
+          "text-max-width": 120, width: nodeW, height: nodeH, "font-family": "IBM Plex Sans, sans-serif" } },
+        { selector: "edge", style: { width: 1.8, "curve-style": "bezier", "line-color": "data(color)", "target-arrow-color": "data(color)",
+          "target-arrow-shape": "data(arrow)", label: "data(predicate)", "font-size": 9, color: ink3, "text-rotation": "autorotate",
+          "text-background-color": surface, "text-background-opacity": 0.9, "text-background-padding": 2 } },
+        { selector: "edge[!novel]", style: { "line-style": "dashed", width: 1.2, opacity: 0.8 } },
+        { selector: ".faded", style: { opacity: 0.12 } }
+      ],
+      layout: window.cytoscapeFcose ? { name: "fcose", quality: "proof", randomize: true, animate: false, nodeDimensionsIncludeLabels: true,
+        nodeRepulsion: 5000, idealEdgeLength: 70, edgeElasticity: 0.45, gravity: 0.4, nodeSeparation: 70, numIter: 2500, padding: 20 }
+        : { name: "cose", animate: false, padding: 20 }
+    });
+    kc.on("tap", "node", function (e) {
+      var d = e.target.data();
+      kc.elements().addClass("faded"); e.target.closedNeighborhood().removeClass("faded");
+      var rels = e.target.connectedEdges().map(function (x) {
+        return "<li><b>" + esc(x.source().data("label")) + "</b> " + esc(x.data("predicate")) + " <b>" + esc(x.target().data("label")) + "</b></li>";
+      }).join("");
+      kgRail.innerHTML = '<div class="t">' + esc(d.label) + "</div><div><i>" + esc(d.type.replace("_", " ")) + "</i></div><p>" +
+        esc(d.description) + "</p><ul>" + rels + "</ul>";
+    });
+    kc.on("tap", "edge", function (e) {
+      var d = e.target.data();
+      kc.elements().addClass("faded"); e.target.removeClass("faded"); e.target.connectedNodes().removeClass("faded");
+      kgRail.innerHTML = '<div class="t">' + esc(e.target.source().data("label")) + " " + esc(d.predicate) + " " +
+        esc(e.target.target().data("label")) + "</div><p>" + esc(d.evidence) + "</p><p><b>Source:</b> " + esc(d.figure || "text") +
+        "<br><b>Confidence:</b> " + esc(d.confidence) + "<br><b>" + (d.novel ? "New finding of this paper" : "Background knowledge") + "</b></p>";
+    });
+    kc.on("tap", function (e) { if (e.target === kc) kc.elements().removeClass("faded"); });
+    S.cys.push(kc);
+  }
+
+  // ---- router ------------------------------------------------------------
+  var lastRoute = null;
+  function route(soft) {
+    if (!S.week) return;
+    var hash = (location.hash || "#latest").slice(1);
+    if (hash.slice(0, 2) === "w-") {
+      var wid = hash.slice(2);
+      if (wid !== S.weekId) { loadWeek(wid).then(function () { location.hash = "#latest"; }); return; }
+      location.hash = "#latest"; return;
+    }
+    var name = hash.slice(0, 2) === "p-" ? "paper" : (hash === "archive" ? "archive" : "latest");
+    setTab(name === "paper" ? "latest" : name);
+    destroyGraphs();
+    var view = name === "paper" ? viewPaper(hash.slice(2)) : name === "archive" ? viewArchive() : viewLatest();
+    app.replaceChildren(view);
+    if (!soft) window.scrollTo(0, 0);
+    lastRoute = hash;
+  }
+  window.addEventListener("hashchange", function () { route(false); });
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  function redraw() { if (lastRoute && lastRoute.slice(0, 2) === "p-") route(true); }
+  if (mq.addEventListener) mq.addEventListener("change", redraw);
+  new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  loadJSON("data/index.json").then(function (idx) {
+    S.index = idx;
+    var sel = document.getElementById("week-select");
+    idx.weeks.forEach(function (w) { sel.append(h("option", { value: w.id }, w.label)); });
+    sel.addEventListener("change", function () { location.hash = "#latest"; loadWeek(sel.value); });
+    document.getElementById("foot").textContent =
+      "Deep reads are generated by Claude from each paper's full text and checked against the lab's research questions. They are a reading aid, not a substitute for the paper: check any claim you intend to build on.";
+    return loadWeek(idx.weeks[0].id);
+  }).catch(function () {
+    app.replaceChildren(h("div", { class: "view" }, h("div", { class: "empty" }, "Could not load the deep reads. Reload the page to try again.")));
+  });
+})();
+</script>

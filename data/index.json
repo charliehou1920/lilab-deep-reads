@@ -1,0 +1,48 @@
+{
+ "title": "Li Lab Deep Reads",
+ "topics": [
+  {
+   "id": "brca1",
+   "short": "BRCA1",
+   "name": "BRCA1, mammary epithelium and immune evasion"
+  },
+  {
+   "id": "esr1_ft_stroma",
+   "short": "ESR1 FT/ovarian stroma",
+   "name": "ESR1 / estrogen signaling in fallopian tube and ovarian cancer stroma"
+  },
+  {
+   "id": "igf1r",
+   "short": "IGF1R",
+   "name": "IGF1R / IGF1 signaling in breast and ovarian cancer"
+  },
+  {
+   "id": "ecdna",
+   "short": "ecDNA",
+   "name": "Extrachromosomal DNA (ecDNA) in breast and ovarian cancer"
+  }
+ ],
+ "weeks": [
+  {
+   "id": "2026-10-30",
+   "label": "October 30, 2026",
+   "date": "2026-10-30",
+   "topic_label": "BRCA1 + ESR1 FT/ovarian stroma + IGF1R + ecDNA",
+   "headline": "Four topics, one recurring theme: DNA damage and stromal inflammation set what the immune system sees",
+   "count": 4,
+   "topics": [
+    "brca1",
+    "ecdna",
+    "esr1_ft_stroma",
+    "igf1r"
+   ],
+   "titles": [
+    "MMEJ repair of breaks at TA repeats maintains ecDNA and cancer fitness",
+    "PARP1-selective inhibitor DSB1559 demonstrates superior efficacy and antitumor immunity in triple-negative breast cancer",
+    "Senescent cancer-associated fibroblasts secrete Tenascin-C to promote tumor progression in high-grade serous ovarian cancer",
+    "Identification and Validation of the ESR1 Y537S Mutant-Enriched Enhancer and Its Downstream Target IGFBP3"
+   ],
+   "file": "data/week-2026-10-30.json"
+  }
+ ]
+}

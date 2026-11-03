@@ -2,27 +2,90 @@
  "title": "Li Lab Deep Reads",
  "topics": [
   {
-   "id": "brca1",
-   "short": "BRCA1",
-   "name": "BRCA1, mammary epithelium and immune evasion"
+   "id": "estrogen_tme",
+   "short": "Estrogen microenvironment",
+   "name": "Estrogen in the stromal and myeloid microenvironment of ovarian and breast cancer"
   },
   {
-   "id": "esr1_ft_stroma",
-   "short": "ESR1 FT/ovarian stroma",
-   "name": "ESR1 / estrogen signaling in fallopian tube and ovarian cancer stroma"
+   "id": "brca1_er_negative",
+   "short": "BRCA1 / ER-negative breast",
+   "name": "BRCA1 deficiency in ER-negative breast cancer: cell of origin and immune evasion"
   },
   {
-   "id": "igf1r",
-   "short": "IGF1R",
-   "name": "IGF1R / IGF1 signaling in breast and ovarian cancer"
-  },
-  {
-   "id": "ecdna",
-   "short": "ecDNA",
-   "name": "Extrachromosomal DNA (ecDNA) in breast and ovarian cancer"
+   "id": "ecdna_er_positive",
+   "short": "ecDNA / ER-positive breast",
+   "name": "Extrachromosomal DNA (ecDNA) in ER-positive breast cancer"
   }
  ],
  "weeks": [
+  {
+   "id": "2026-11-03",
+   "label": "November 3, 2026",
+   "date": "2026-11-03",
+   "topic_label": "Estrogen microenvironment + BRCA1 / ER-negative breast + ecDNA / ER-positive breast",
+   "headline": "Five papers hand over the cell states this lab works on, and not one of them scores the immune step",
+   "count": 5,
+   "topics": [
+    "brca1_er_negative",
+    "ecdna_er_positive",
+    "estrogen_tme"
+   ],
+   "papers": [
+    {
+     "key": "10-1038-s41420-026-03433-z",
+     "title": "NF-kB-mediated chemoresistance emerges from distorted fallopian tube cell-state trajectory in ovarian cancer",
+     "topics": [
+      "estrogen_tme"
+     ],
+     "journal": "Cell Death Discovery",
+     "pub_date": "2026-10-30"
+    },
+    {
+     "key": "10-1371-journal-pgen-1012355",
+     "title": "Multi-omics analysis of high-grade serous ovarian cancers reveals heterogeneity and distinct immunological patterns based upon clinico-genomic status",
+     "topics": [
+      "estrogen_tme"
+     ],
+     "journal": "PLOS Genetics",
+     "pub_date": "2026-10-22"
+    },
+    {
+     "key": "10-64898-2026-09-29-755499",
+     "title": "Cell-of-origin shapes tumor subtype in BRCA1-associated triple-negative breast cancer",
+     "topics": [
+      "brca1_er_negative"
+     ],
+     "journal": "bioRxiv",
+     "pub_date": "2026-09-30"
+    },
+    {
+     "key": "10-7554-elife-112264",
+     "title": "MicroRNA spatial profiling for assessing drug efficacy in BRCA1-related triple-negative breast tumors",
+     "topics": [
+      "brca1_er_negative"
+     ],
+     "journal": "eLife",
+     "pub_date": "2026-09-21"
+    },
+    {
+     "key": "10-64898-2026-09-11-751063",
+     "title": "Inverted logic of ecDNA localization converts nuclear periphery into oncogenic transcription hubs in cancer",
+     "topics": [
+      "ecdna_er_positive"
+     ],
+     "journal": "bioRxiv",
+     "pub_date": "2026-09-17"
+    }
+   ],
+   "titles": [
+    "NF-kB-mediated chemoresistance emerges from distorted fallopian tube cell-state trajectory in ovarian cancer",
+    "Multi-omics analysis of high-grade serous ovarian cancers reveals heterogeneity and distinct immunological patterns based upon clinico-genomic status",
+    "Cell-of-origin shapes tumor subtype in BRCA1-associated triple-negative breast cancer",
+    "MicroRNA spatial profiling for assessing drug efficacy in BRCA1-related triple-negative breast tumors",
+    "Inverted logic of ecDNA localization converts nuclear periphery into oncogenic transcription hubs in cancer"
+   ],
+   "file": "data/week-2026-11-03.json"
+  },
   {
    "id": "2026-10-30",
    "label": "October 30, 2026",

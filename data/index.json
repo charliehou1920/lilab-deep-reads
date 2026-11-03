@@ -36,6 +36,44 @@
     "esr1_ft_stroma",
     "igf1r"
    ],
+   "papers": [
+    {
+     "key": "10-1038-s41586-026-11048-8",
+     "title": "MMEJ repair of breaks at TA repeats maintains ecDNA and cancer fitness",
+     "topics": [
+      "ecdna"
+     ],
+     "journal": "Nature",
+     "pub_date": "2026-09-23"
+    },
+    {
+     "key": "10-1136-jitc-2025-014578",
+     "title": "PARP1-selective inhibitor DSB1559 demonstrates superior efficacy and antitumor immunity in triple-negative breast cancer",
+     "topics": [
+      "brca1"
+     ],
+     "journal": "Journal for ImmunoTherapy of Cancer",
+     "pub_date": "2026-10-07"
+    },
+    {
+     "key": "10-1186-s13073-026-01795-8",
+     "title": "Senescent cancer-associated fibroblasts secrete Tenascin-C to promote tumor progression in high-grade serous ovarian cancer",
+     "topics": [
+      "esr1_ft_stroma"
+     ],
+     "journal": "Genome Medicine",
+     "pub_date": "2026-10-11"
+    },
+    {
+     "key": "10-1158-2767-9764-crc-26-0366",
+     "title": "Identification and Validation of the ESR1 Y537S Mutant-Enriched Enhancer and Its Downstream Target IGFBP3",
+     "topics": [
+      "igf1r"
+     ],
+     "journal": "Cancer Research Communications",
+     "pub_date": "2026-10-01"
+    }
+   ],
    "titles": [
     "MMEJ repair of breaks at TA repeats maintains ecDNA and cancer fitness",
     "PARP1-selective inhibitor DSB1559 demonstrates superior efficacy and antitumor immunity in triple-negative breast cancer",

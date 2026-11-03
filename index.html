@@ -17,7 +17,9 @@
 :root {
   --bg: #f5f5f9; --surface: #fff; --surface-2: #f0eff6; --ink: #1c1b2e; --ink-2: #474560;
   --ink-3: #78758f; --line: #e2e0ec; --hema: #3d3a8c; --hema-soft: #e8e7f6; --eosin: #b83a62;
-  --eosin-soft: #f8e6ec; --t-brca1: #3d3a8c; --t-esr1: #b83a62; --t-igf1r: #a35f00; --t-ecdna: #0e746e;
+  --eosin-soft: #f8e6ec;
+  /* One hue per research topic, assigned in the order the site lists its topics. */
+  --t1: #3d3a8c; --t2: #b83a62; --t3: #0e746e; --t4: #a35f00; --t5: #4a7a1e; --t6: #7b4fc9;
   --good: #2c7a4b; --good-soft: #e3f2e9; --warn: #9a5c00; --warn-soft: #fbf0dc; --bad: #b3261e;
   --kg-edge: #8f8ca6;
   --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
@@ -27,13 +29,15 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #12111b; --surface: #1b1a27; --surface-2: #232233; --ink: #ecebf5; --ink-2: #bdbad0;
   --ink-3: #8c89a3; --line: #2e2c40; --hema: #a3a0f2; --hema-soft: #29274a; --eosin: #f08aa9;
-  --eosin-soft: #3a2230; --t-brca1: #a3a0f2; --t-esr1: #f08aa9; --t-igf1r: #e3a54f; --t-ecdna: #4fc4b8;
+  --eosin-soft: #3a2230;
+  --t1: #a3a0f2; --t2: #f08aa9; --t3: #4fc4b8; --t4: #e3a54f; --t5: #a8cf6a; --t6: #c3a6f5;
   --good: #6cc995; --good-soft: #1d3327; --warn: #e3a54f; --warn-soft: #3a2d17; --bad: #f2867f;
   --kg-edge: #6f6c88; color-scheme: dark; } }
 :root[data-theme="dark"] {
   --bg: #12111b; --surface: #1b1a27; --surface-2: #232233; --ink: #ecebf5; --ink-2: #bdbad0;
   --ink-3: #8c89a3; --line: #2e2c40; --hema: #a3a0f2; --hema-soft: #29274a; --eosin: #f08aa9;
-  --eosin-soft: #3a2230; --t-brca1: #a3a0f2; --t-esr1: #f08aa9; --t-igf1r: #e3a54f; --t-ecdna: #4fc4b8;
+  --eosin-soft: #3a2230;
+  --t1: #a3a0f2; --t2: #f08aa9; --t3: #4fc4b8; --t4: #e3a54f; --t5: #a8cf6a; --t6: #c3a6f5;
   --good: #6cc995; --good-soft: #1d3327; --warn: #e3a54f; --warn-soft: #3a2d17; --bad: #f2867f;
   --kg-edge: #6f6c88; color-scheme: dark; }
 
@@ -83,6 +87,23 @@ ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
 
 /* Deep read cards */
 .cards { display: grid; gap: 14px; }
+.across-head { font: 500 18px/1.35 var(--font-display); color: var(--ink); margin: 0 0 8px; max-width: 60ch; }
+.topicbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 4px; }
+.topicbar a { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 13px 6px 11px; font-size: 13px; color: var(--ink-2); text-decoration: none; background: var(--surface); }
+.topicbar a:hover { border-color: var(--tc); color: var(--ink); }
+.topicbar .n { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.topic-sec { display: grid; gap: 13px; scroll-margin-top: 78px; }
+.topic-head { display: grid; gap: 3px; border-left: 4px solid var(--tc); padding: 2px 0 2px 14px; }
+.topic-head h2 { font: 600 23px/1.2 var(--font-display); margin: 0; color: var(--tc); }
+.topic-head .topic-sub { color: var(--ink-2); font-size: 14.5px; max-width: 72ch; }
+.topic-head .topic-count { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.arch-topic { display: grid; gap: 9px; }
+.arch-row { display: grid; grid-template-columns: 158px minmax(0, 1fr); gap: 14px; border-top: 1px solid var(--line); padding-top: 11px; }
+.arch-row .wk { font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.arch-row ol { margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 14.5px; }
+.arch-row a { color: var(--ink); }
+@media (max-width: 720px) { .arch-row { grid-template-columns: 1fr; gap: 5px; } }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; border-left: 4px solid var(--tc, var(--hema)); }
 .card .num { font: 600 11px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 .card h3 { font: 600 20px/1.3 var(--font-display); margin: 0; text-transform: none; letter-spacing: 0; color: var(--ink); }
@@ -191,7 +212,7 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
 (function () {
   "use strict";
   var S = { index: null, week: null, weekId: null, cache: {}, cys: [], archTopic: "all" };
-  var TOPIC_VAR = { brca1: "--t-brca1", esr1_ft_stroma: "--t-esr1", igf1r: "--t-igf1r", ecdna: "--t-ecdna" };
+  var PALETTE = ["--t1", "--t2", "--t3", "--t4", "--t5", "--t6"];
   var app = document.getElementById("app");
 
   if (window.cytoscape) {
@@ -215,12 +236,26 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
     return el;
   }
   function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
-  function topicColor(id) { return "var(" + (TOPIC_VAR[id] || "--ink-3") + ")"; }
-  function topicName(id) {
-    var all = (S.week && S.week.topics) || (S.index && S.index.topics) || [];
-    for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i].short;
-    return id;
+  // Each topic keeps one hue, taken from the order the site lists its topics, so adding or
+  // renaming a topic never needs a change here.
+  function topicOrder() {
+    var seen = {}, out = [];
+    [(S.index && S.index.topics) || [], (S.week && S.week.topics) || []].forEach(function (list) {
+      list.forEach(function (t) { if (!seen[t.id]) { seen[t.id] = 1; out.push(t); } });
+    });
+    return out;
   }
+  function topicColor(id) {
+    var all = topicOrder();
+    for (var i = 0; i < all.length; i++) if (all[i].id === id) return "var(" + PALETTE[i % PALETTE.length] + ")";
+    return "var(--ink-3)";
+  }
+  function topicMeta(id) {
+    var all = topicOrder();
+    for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
+    return { id: id, short: id, name: "" };
+  }
+  function topicName(id) { return topicMeta(id).short || id; }
   function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : String(s); return d.innerHTML; }
   function wrapText(t, n) {
     var w = String(t).split(" "), lines = [], cur = "";
@@ -273,20 +308,64 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
     });
   }
 
+  // Papers of one topic, in the order the week lists them. A paper tagged with two topics
+  // appears under both, which is deliberate: each topic section has to read on its own.
+  function papersOfTopic(W, id) {
+    return (W.papers || []).filter(function (p) { return (p.topics || []).indexOf(id) >= 0; });
+  }
+  // The topics that actually have deep reads this week, week order first.
+  function weekTopics(W) {
+    var have = {}, out = [], known = {};
+    (W.papers || []).forEach(function (p) { (p.topics || []).forEach(function (t) { have[t] = 1; }); });
+    (W.topics || []).forEach(function (t) { if (have[t.id]) { out.push(t); known[t.id] = 1; } });
+    Object.keys(have).forEach(function (id) { if (!known[id]) out.push(topicMeta(id)); });
+    return out;
+  }
+
   function viewLatest() {
-    var W = S.week, ps = W.papers || [];
+    var W = S.week, ps = W.papers || [], topics = weekTopics(W);
+    var untagged = ps.filter(function (p) { return !(p.topics || []).length; });
     return h("div", { class: "view" },
       h("section", { class: "lede" },
-        h("div", { class: "eyebrow" }, "Week of " + W.label + " · " + W.topic_label + " · " + ps.length + " deep reads"),
-        h("h1", {}, W.headline || "This week's deep reads"),
-        W.summary ? h("p", {}, W.summary) : null),
-      ps.length ? h("div", { class: "cards" }, ps.map(function (p, i) { return card(p, i); })) : h("div", { class: "empty" }, "No deep reads for this week."),
-      (W.cross_links && W.cross_links.length) || (W.actions && W.actions.length) ?
-        h("section", { class: "grid2" },
-          W.cross_links && W.cross_links.length ? h("div", { class: "panel" }, h("h2", {}, "Connections worth noticing"),
-            h("ul", { class: "plain" }, W.cross_links.map(function (x) { return h("li", {}, x); }))) : null,
-          W.actions && W.actions.length ? h("div", { class: "panel" }, h("h2", {}, "Suggested next steps"),
-            h("ul", { class: "plain" }, W.actions.map(function (x) { return h("li", {}, x); }))) : null) : null);
+        h("div", { class: "eyebrow" }, "Week of " + W.label),
+        h("h1", {}, ps.length + (ps.length === 1 ? " deep read" : " deep reads") + " across "
+          + topics.length + (topics.length === 1 ? " topic" : " topics")),
+        h("p", {}, "Each research direction is kept separate below. Open a paper for its logic chain, "
+          + "its knowledge graph and the methods explained in plain language.")),
+      topics.length > 1 ? h("nav", { class: "topicbar", "aria-label": "Topics" }, topics.map(function (t) {
+        return h("a", { href: "#t-" + t.id, style: "--tc:" + topicColor(t.id) },
+          h("span", { class: "dot", style: "--tc:" + topicColor(t.id) }),
+          t.short || t.id, h("span", { class: "n" }, papersOfTopic(W, t.id).length));
+      })) : null,
+      topics.length ? topics.map(function (t) { return topicSection(W, t); })
+        : h("div", { class: "empty" }, "No deep reads for this week."),
+      untagged.length ? h("section", { class: "topic-sec", style: "--tc:var(--ink-3)" },
+        h("div", { class: "topic-head" }, h("h2", {}, "Other")),
+        h("div", { class: "cards" }, untagged.map(function (p, i) { return card(p, i); }))) : null,
+      acrossTopics(W));
+  }
+
+  function topicSection(W, t) {
+    var list = papersOfTopic(W, t.id);
+    return h("section", { class: "topic-sec", id: "t-" + t.id, style: "--tc:" + topicColor(t.id) },
+      h("div", { class: "topic-head" },
+        h("div", { class: "topic-count" }, list.length + (list.length === 1 ? " deep read" : " deep reads")),
+        h("h2", {}, t.short || t.id),
+        t.name && t.name !== t.short ? h("div", { class: "topic-sub" }, t.name) : null),
+      h("div", { class: "cards" }, list.map(function (p, i) { return card(p, i); })));
+  }
+
+  // Anything that spans topics is kept out of the topic sections and collected here.
+  function acrossTopics(W) {
+    var has = W.headline || W.summary || (W.cross_links || []).length || (W.actions || []).length;
+    if (!has) return null;
+    return h("section", { class: "panel" }, h("h2", {}, "Across topics"),
+      W.headline ? h("p", { class: "across-head" }, W.headline) : null,
+      W.summary ? h("p", {}, W.summary) : null,
+      (W.cross_links || []).length ? [h("h3", {}, "Connections worth noticing"),
+        h("ul", { class: "plain" }, W.cross_links.map(function (x) { return h("li", {}, x); }))] : null,
+      (W.actions || []).length ? [h("h3", {}, "Suggested next steps"),
+        h("ul", { class: "plain" }, W.actions.map(function (x) { return h("li", {}, x); }))] : null);
   }
 
   function card(p, i) {
@@ -302,49 +381,64 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
         href ? h("a", { class: "btn", href: href, target: "_blank", rel: "noopener" }, "Original paper") : null));
   }
 
-  function viewArchive() {
-    var weeks = S.index.weeks.slice().sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
-    if (S.archTopic !== "all") weeks = weeks.filter(function (w) { return (w.topics || []).indexOf(S.archTopic) >= 0; });
-    var months = [], seen = {};
+  // The archive is grouped by topic first, then by week, so a reader following one research
+  // direction can scan only that direction. Entries come from the index, which carries each
+  // week's papers; older index files only carry titles, so those degrade to plain text.
+  function archiveTopics() {
+    var weeks = S.index.weeks || [], seen = {}, out = [];
+    topicOrder().forEach(function (t) { seen[t.id] = 1; out.push(t); });
     weeks.forEach(function (w) {
-      var m = (w.date || "").slice(0, 7);
-      if (!seen[m]) { seen[m] = []; months.push(m); }
-      seen[m].push(w);
+      (w.topics || []).forEach(function (id) { if (!seen[id]) { seen[id] = 1; out.push(topicMeta(id)); } });
     });
-    var topics = (S.index.topics || []).map(function (t) { return [t.id, t.short, topicColor(t.id)]; });
-    var seg = h("div", { class: "seg", role: "group" }, [["all", "All topics", null]].concat(topics).map(function (o) {
-      return h("button", { type: "button", "aria-pressed": String(S.archTopic === o[0]),
-        onclick: function () { S.archTopic = o[0]; route(true); } },
-        o[2] ? h("span", { class: "dot", style: "--tc:" + o[2] }) : null, o[1]);
-    }));
+    return out.filter(function (t) { return archiveRows(t.id).length; });
+  }
+  function archiveRows(id) {
+    return (S.index.weeks || []).slice()
+      .sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); })
+      .map(function (w) {
+        var papers = (w.papers || []).filter(function (p) { return (p.topics || []).indexOf(id) >= 0; });
+        if (!papers.length && !(w.papers || []).length && (w.topics || []).indexOf(id) >= 0) {
+          papers = (w.titles || []).map(function (t) { return { title: t }; });
+        }
+        return papers.length ? { week: w, papers: papers } : null;
+      }).filter(Boolean);
+  }
+
+  function viewArchive() {
+    var topics = archiveTopics();
+    var shown = S.archTopic === "all" ? topics : topics.filter(function (t) { return t.id === S.archTopic; });
+    var weeks = S.index.weeks || [];
+    var seg = h("div", { class: "seg", role: "group" },
+      [{ id: "all", short: "All topics" }].concat(topics).map(function (t) {
+        return h("button", { type: "button", "aria-pressed": String(S.archTopic === t.id),
+          onclick: function () { S.archTopic = t.id; route(true); } },
+          t.id === "all" ? null : h("span", { class: "dot", style: "--tc:" + topicColor(t.id) }),
+          t.short || t.id);
+      }));
     return h("div", { class: "view" },
       h("section", { class: "lede" },
         h("div", { class: "eyebrow" }, "Archive"),
-        h("h1", {}, S.index.weeks.length + (S.index.weeks.length === 1 ? " week" : " weeks") + " on record"),
-        h("p", {}, "Every weekly set of deep reads, newest first. Each paper keeps its logic chain and knowledge graph.")),
+        h("h1", {}, weeks.length + (weeks.length === 1 ? " week" : " weeks") + " on record"),
+        h("p", {}, "Every deep read so far, grouped by research direction and newest first. "
+          + "Each paper keeps its logic chain and knowledge graph.")),
       h("div", { class: "filters" }, seg),
-      months.length ? months.map(function (m) {
-        return h("section", { class: "view", style: "gap:10px" },
-          h("div", { class: "arch-month" }, monthLabel(m)),
-          seen[m].map(function (w) {
-            return h("article", { class: "arch-week" },
-              h("div", { class: "top" },
-                h("div", { class: "wk" }, h("a", { href: "#w-" + w.id, style: "color:inherit;text-decoration:none" }, w.label)),
-                h("div", { class: "chips" }, (w.topics || []).map(function (t) {
-                  return h("span", { class: "chip topic", style: "--tc:" + topicColor(t) }, topicName(t));
-                }), h("span", { class: "chip" }, w.count + " deep reads"))),
-              w.headline ? h("div", { class: "note" }, w.headline) : null,
-              h("ol", {}, (w.titles || []).map(function (t) { return h("li", {}, t); })),
-              h("div", {}, h("a", { class: "btn", href: "#w-" + w.id }, "Open this week")));
-          }));
-      }) : h("div", { class: "empty" }, "No weeks for this topic yet."));
+      shown.length ? shown.map(function (t) {
+        var rows = archiveRows(t.id);
+        var n = rows.reduce(function (a, r) { return a + r.papers.length; }, 0);
+        return h("section", { class: "topic-sec", style: "--tc:" + topicColor(t.id) },
+          h("div", { class: "topic-head" },
+            h("div", { class: "topic-count" }, n + (n === 1 ? " paper" : " papers")),
+            h("h2", {}, t.short || t.id),
+            t.name && t.name !== t.short ? h("div", { class: "topic-sub" }, t.name) : null),
+          h("div", { class: "arch-topic" }, rows.map(function (r) {
+            return h("div", { class: "arch-row" },
+              h("div", { class: "wk" }, h("a", { href: "#w-" + r.week.id, style: "color:inherit" }, r.week.label)),
+              h("ol", {}, r.papers.map(function (x) {
+                return h("li", {}, x.key ? h("a", { href: "#p-" + x.key }, x.title) : x.title);
+              })));
+          })));
+      }) : h("div", { class: "empty" }, "Nothing archived for this topic yet."));
   }
-  function monthLabel(m) {
-    var names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var parts = m.split("-");
-    return names[Number(parts[1]) - 1] + " " + parts[0];
-  }
-
   // ---- paper page --------------------------------------------------------
   var ENTITY = { gene: "#4f5bd5", protein: "#6a74e0", pathway: "#7b4fc9", cell_type: "#2f8a55", cell_state: "#6a9a1f",
     tissue: "#14838a", disease: "#c0392b", phenotype: "#d4661a", drug: "#a83fbf", method: "#5c6070", dataset: "#8a8f9c", other: "#8a8f9c" };
@@ -366,6 +460,17 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
       c.elements().removeClass("faded"); c.fit(null, 24);
       if (c.container() && c.container().classList.contains("logic")) readableZoom(c, c.container(), 0.9);
     });
+  }
+
+  function paperHere(key) {
+    return ((S.week && S.week.papers) || []).some(function (p) { return p.key === key; });
+  }
+  function weekOfPaper(key) {
+    var found = null;
+    (((S.index || {}).weeks) || []).forEach(function (w) {
+      (w.papers || []).forEach(function (p) { if (p.key === key && !found) found = w.id; });
+    });
+    return found;
   }
 
   function viewPaper(key) {
@@ -545,12 +650,20 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
       if (wid !== S.weekId) { loadWeek(wid).then(function () { location.hash = "#latest"; }); return; }
       location.hash = "#latest"; return;
     }
+    if (hash.slice(0, 2) === "p-" && !paperHere(hash.slice(2))) {
+      // An emailed link points at a paper, not a week: find the week holding it and load that.
+      var home = weekOfPaper(hash.slice(2));
+      if (home && home !== S.weekId) { loadWeek(home); return; }
+    }
     var name = hash.slice(0, 2) === "p-" ? "paper" : (hash === "archive" ? "archive" : "latest");
     setTab(name === "paper" ? "latest" : name);
     destroyGraphs();
     var view = name === "paper" ? viewPaper(hash.slice(2)) : name === "archive" ? viewArchive() : viewLatest();
     app.replaceChildren(view);
-    if (!soft) window.scrollTo(0, 0);
+    // #t-<topic> is the link an email uses to open one research direction of the week.
+    var sec = hash.slice(0, 2) === "t-" ? document.getElementById(hash) : null;
+    if (sec) sec.scrollIntoView({ block: "start" });
+    else if (!soft) window.scrollTo(0, 0);
     lastRoute = hash;
   }
   window.addEventListener("hashchange", function () { route(false); });

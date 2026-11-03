@@ -56,10 +56,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .brand { display: flex; align-items: baseline; gap: 10px; margin-right: auto; text-decoration: none; color: inherit; }
 .brand b { font: 600 20px/1 var(--font-display); }
 .brand span { color: var(--ink-3); font-size: 12px; letter-spacing: .07em; text-transform: uppercase; }
-.tabs { display: flex; gap: 4px; }
-.tab { padding: 6px 13px; border-radius: 999px; text-decoration: none; color: var(--ink-2); font-weight: 500; font-size: 14px; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+.tabs::-webkit-scrollbar { display: none; }
+@media (max-width: 760px) { /* hint that the direction tabs scroll sideways */
+  .tabs { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, #000 88%, transparent); } }
+.tab { padding: 6px 13px; border-radius: 999px; text-decoration: none; color: var(--ink-2); font-weight: 500;
+  font-size: 14px; white-space: nowrap; flex: none; display: inline-flex; align-items: center; gap: 7px; }
 .tab:hover { background: var(--surface-2); color: var(--ink); }
-.tab[aria-current="page"] { background: var(--hema); color: var(--surface); }
+.tab[aria-current="page"] { background: var(--tc, var(--hema)); color: #fff; }
+.tab[aria-current="page"] .dot { background: rgba(255,255,255,.75); }
 .weekpick { font-size: 13px; color: var(--ink-3); display: flex; gap: 6px; align-items: center; }
 .weekpick select { background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; max-width: 190px; }
 
@@ -190,11 +196,8 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#latest"><b>Li Lab Deep Reads</b><span id="brand-sub">Weekly</span></a>
-    <nav class="tabs" aria-label="Sections">
-      <a class="tab" href="#latest" data-route="latest">This week</a>
-      <a class="tab" href="#archive" data-route="archive">Archive</a>
-    </nav>
+    <a class="brand" href="#top"><b>Li Lab Deep Reads</b><span id="brand-sub">Weekly</span></a>
+    <nav class="tabs" id="nav" aria-label="Research directions"></nav>
     <label class="weekpick" for="week-select">Week <select id="week-select"></select></label>
   </div>
 </header>
@@ -298,14 +301,33 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
   function afterWeek(meta) {
     document.getElementById("week-select").value = meta.id;
     document.getElementById("brand-sub").textContent = meta.label;
+    buildNav();
     route();
   }
 
   // ---- views -------------------------------------------------------------
+  // The nav carries one tab per research direction plus the archive. It is rebuilt whenever
+  // a week is loaded, because the topics come from the data, not from the markup.
+  function buildNav() {
+    var nav = document.getElementById("nav");
+    var tabs = weekTopics(S.week).map(function (t) {
+      return h("a", { class: "tab", href: "#t-" + t.id, "data-route": "t-" + t.id,
+        style: "--tc:" + topicColor(t.id) },
+        h("span", { class: "dot", style: "--tc:" + topicColor(t.id) }), t.short || t.id);
+    });
+    tabs.push(h("a", { class: "tab", href: "#archive", "data-route": "archive" }, "Archive"));
+    nav.replaceChildren.apply(nav, tabs);
+  }
   function setTab(name) {
     document.querySelectorAll(".tab").forEach(function (a) {
       a.setAttribute("aria-current", a.dataset.route === name ? "page" : "false");
     });
+  }
+  // The page a bare link, the brand or an unknown hash lands on: the first direction that
+  // has a deep read this week.
+  function firstTopicRoute() {
+    var ts = weekTopics(S.week);
+    return ts.length ? "t-" + ts[0].id : "archive";
   }
 
   // Papers of one topic, in the order the week lists them. A paper tagged with two topics
@@ -322,40 +344,29 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
     return out;
   }
 
-  function viewLatest() {
-    var W = S.week, ps = W.papers || [], topics = weekTopics(W);
-    var untagged = ps.filter(function (p) { return !(p.topics || []).length; });
-    return h("div", { class: "view" },
+  function viewTopic(id) {
+    var W = S.week, t = topicMeta(id), list = papersOfTopic(W, id);
+    var earlier = archiveRows(id).filter(function (r) { return r.week.id !== S.weekId; });
+    return h("div", { class: "view", style: "--tc:" + topicColor(id) },
       h("section", { class: "lede" },
         h("div", { class: "eyebrow" }, "Week of " + W.label),
-        h("h1", {}, ps.length + (ps.length === 1 ? " deep read" : " deep reads") + " across "
-          + topics.length + (topics.length === 1 ? " topic" : " topics")),
-        h("p", {}, "Each research direction is kept separate below. Open a paper for its logic chain, "
-          + "its knowledge graph and the methods explained in plain language.")),
-      topics.length > 1 ? h("nav", { class: "topicbar", "aria-label": "Topics" }, topics.map(function (t) {
-        return h("a", { href: "#t-" + t.id, style: "--tc:" + topicColor(t.id) },
-          h("span", { class: "dot", style: "--tc:" + topicColor(t.id) }),
-          t.short || t.id, h("span", { class: "n" }, papersOfTopic(W, t.id).length));
-      })) : null,
-      topics.length ? topics.map(function (t) { return topicSection(W, t); })
-        : h("div", { class: "empty" }, "No deep reads for this week."),
-      untagged.length ? h("section", { class: "topic-sec", style: "--tc:var(--ink-3)" },
-        h("div", { class: "topic-head" }, h("h2", {}, "Other")),
-        h("div", { class: "cards" }, untagged.map(function (p, i) { return card(p, i); }))) : null,
-      acrossTopics(W));
+        h("h1", { style: "color:" + topicColor(id) }, t.short || id),
+        t.name && t.name !== t.short ? h("p", {}, t.name) : null),
+      list.length
+        ? h("div", { class: "cards" }, list.map(function (p, i) { return card(p, i); }))
+        : h("div", { class: "empty" }, "No deep read in this direction for the week of " + W.label + "."),
+      earlier.length ? h("section", { class: "panel" }, h("h2", {}, "Earlier in this direction"),
+        h("div", { class: "arch-topic" }, earlier.slice(0, 12).map(function (r) {
+          return h("div", { class: "arch-row" },
+            h("div", { class: "wk" }, r.week.label),
+            h("ol", {}, r.papers.map(function (x) {
+              return h("li", {}, x.key ? h("a", { href: "#p-" + x.key }, x.title) : x.title);
+            })));
+        })),
+        earlier.length > 12 ? h("p", { class: "note" }, h("a", { href: "#archive" }, "See the whole archive")) : null) : null);
   }
 
-  function topicSection(W, t) {
-    var list = papersOfTopic(W, t.id);
-    return h("section", { class: "topic-sec", id: "t-" + t.id, style: "--tc:" + topicColor(t.id) },
-      h("div", { class: "topic-head" },
-        h("div", { class: "topic-count" }, list.length + (list.length === 1 ? " deep read" : " deep reads")),
-        h("h2", {}, t.short || t.id),
-        t.name && t.name !== t.short ? h("div", { class: "topic-sub" }, t.name) : null),
-      h("div", { class: "cards" }, list.map(function (p, i) { return card(p, i); })));
-  }
-
-  // Anything that spans topics is kept out of the topic sections and collected here.
+  // Anything that spans directions is kept off the topic pages and shown on the archive.
   function acrossTopics(W) {
     var has = W.headline || W.summary || (W.cross_links || []).length || (W.actions || []).length;
     if (!has) return null;
@@ -422,6 +433,7 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
         h("p", {}, "Every deep read so far, grouped by research direction and newest first. "
           + "Each paper keeps its logic chain and knowledge graph.")),
       h("div", { class: "filters" }, seg),
+      acrossTopics(S.week),
       shown.length ? shown.map(function (t) {
         var rows = archiveRows(t.id);
         var n = rows.reduce(function (a, r) { return a + r.papers.length; }, 0);
@@ -462,6 +474,15 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
     });
   }
 
+  function paperOf(key) {
+    var found = null;
+    ((S.week && S.week.papers) || []).forEach(function (p) { if (p.key === key) found = p; });
+    return found;
+  }
+  function topicHere(id) {
+    return weekTopics(S.week).some(function (t) { return t.id === id; })
+      || archiveRows(id).length > 0;
+  }
   function paperHere(key) {
     return ((S.week && S.week.papers) || []).some(function (p) { return p.key === key; });
   }
@@ -483,7 +504,8 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
     var kgRail = h("div", { class: "rail", id: "rail-kg" }, h("div", { class: "t" }, "Click a node or an edge"),
       "Solid edges are new findings of this paper; dashed edges are background knowledge it relies on. Green arrows activate or increase, red flat ends inhibit or decrease.");
     var view = h("div", { class: "view" },
-      h("div", {}, h("a", { href: "#latest", class: "note" }, "← " + S.week.label)),
+      h("div", {}, h("a", { href: "#t-" + ((p.topics || [])[0] || ""), class: "note" },
+        "← " + topicName((p.topics || [])[0]) + ", " + S.week.label)),
       h("section", { class: "paper-head" },
         h("div", { class: "chips" }, topicChips(p), tierChip(p.tier), accessChip(p), h("span", { class: "chip" }, "Lab relevance " + r.relevance_score + "/5")),
         h("h1", {}, r.bibliographic.title || p.title),
@@ -642,28 +664,37 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
 
   // ---- router ------------------------------------------------------------
   var lastRoute = null;
+  // Routes: #t-<topic> is one research direction's page, #p-<key> one paper, #archive the
+  // archive, #w-<week> switches week and lands back on a topic page.
   function route(soft) {
     if (!S.week) return;
-    var hash = (location.hash || "#latest").slice(1);
+    var hash = (location.hash || "").slice(1);
     if (hash.slice(0, 2) === "w-") {
       var wid = hash.slice(2);
-      if (wid !== S.weekId) { loadWeek(wid).then(function () { location.hash = "#latest"; }); return; }
-      location.hash = "#latest"; return;
+      if (wid !== S.weekId) { loadWeek(wid).then(function () { location.hash = "#" + firstTopicRoute(); }); return; }
+      location.hash = "#" + firstTopicRoute(); return;
     }
     if (hash.slice(0, 2) === "p-" && !paperHere(hash.slice(2))) {
       // An emailed link points at a paper, not a week: find the week holding it and load that.
       var home = weekOfPaper(hash.slice(2));
       if (home && home !== S.weekId) { loadWeek(home); return; }
     }
-    var name = hash.slice(0, 2) === "p-" ? "paper" : (hash === "archive" ? "archive" : "latest");
-    setTab(name === "paper" ? "latest" : name);
+    var view, tab;
+    if (hash.slice(0, 2) === "p-") {
+      var paper = paperOf(hash.slice(2));
+      view = viewPaper(hash.slice(2));
+      tab = paper ? "t-" + ((paper.topics || [])[0] || "") : "";
+    } else if (hash === "archive") {
+      view = viewArchive(); tab = "archive";
+    } else if (hash.slice(0, 2) === "t-" && topicHere(hash.slice(2))) {
+      view = viewTopic(hash.slice(2)); tab = hash;
+    } else {
+      location.hash = "#" + firstTopicRoute(); return;
+    }
+    setTab(tab);
     destroyGraphs();
-    var view = name === "paper" ? viewPaper(hash.slice(2)) : name === "archive" ? viewArchive() : viewLatest();
     app.replaceChildren(view);
-    // #t-<topic> is the link an email uses to open one research direction of the week.
-    var sec = hash.slice(0, 2) === "t-" ? document.getElementById(hash) : null;
-    if (sec) sec.scrollIntoView({ block: "start" });
-    else if (!soft) window.scrollTo(0, 0);
+    if (!soft) window.scrollTo(0, 0);
     lastRoute = hash;
   }
   window.addEventListener("hashchange", function () { route(false); });
@@ -676,7 +707,11 @@ footer { max-width: 1140px; margin: 0 auto; padding: 0 max(16px, env(safe-area-i
     S.index = idx;
     var sel = document.getElementById("week-select");
     idx.weeks.forEach(function (w) { sel.append(h("option", { value: w.id }, w.label)); });
-    sel.addEventListener("change", function () { location.hash = "#latest"; loadWeek(sel.value); });
+    sel.addEventListener("change", function () { loadWeek(sel.value).then(function () {
+      // Stay in the same research direction when the week changes, if it has one that week.
+      var want = (lastRoute || "").slice(0, 2) === "t-" ? lastRoute : "";
+      location.hash = "#" + (want && topicHere(want.slice(2)) ? want : firstTopicRoute());
+    }); });
     document.getElementById("foot").textContent =
       "Deep reads are generated by Claude from each paper's full text and checked against the lab's research questions. They are a reading aid, not a substitute for the paper: check any claim you intend to build on.";
     return loadWeek(idx.weeks[0].id);

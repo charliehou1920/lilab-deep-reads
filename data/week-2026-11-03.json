@@ -4349,8 +4349,8 @@
     "ecdna_er_positive"
    ],
    "is_preprint": false,
-   "is_open_access": true,
-   "oa_url": "https://www.nature.com/articles/s41588-026-02782-w.pdf",
+   "is_open_access": false,
+   "oa_url": null,
    "relevance": 9,
    "reading": {
     "bibliographic": {
@@ -5303,7 +5303,7 @@
     }
    },
    "source_note": "Read from the publisher PDF supplied by the lab (Nature Genetics, 21 pages: article pages 1 to 15 plus a 6-page Nature Portfolio Reporting Summary), covering the full text, all five main figure graphics and legends, the Methods, the data and code availability statements and the reporting summary; there are no Extended Data figures in this file, and the Supplementary Figures 1 to 14, Supplementary Tables 1 to 4, Supplementary Videos 1 to 6, the Supplementary Note (cell culture details, metaphase spread and FISH preparation, microscopy, nanopore fork analysis, single-MN sequencing analysis and the ecDNA segregation model) and the deposited datasets (ArrayExpress E-MTAB-16933 and E-MTAB-16944, ENA PRJEB112294 and PRJEB111610) were not available, so every claim attributed to a supplementary item here is reported only as the main text describes it and the exact P values in Supplementary Table 3 could not be checked.",
-   "figures_withheld": false
+   "figures_withheld": true
   },
   {
    "key": "10-64898-2026-09-11-751063",

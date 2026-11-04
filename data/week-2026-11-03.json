@@ -23,15 +23,17 @@
   "start": "2026-09-05",
   "end": "2026-11-03"
  },
- "headline": "Five papers hand over the cell states this lab works on, and not one of them scores the immune step",
- "summary": "The strongest paper of the week is the lab's own question asked in the lab's own model class: Lev et al. argue that BRCA1 triple-negative breast cancer also starts in the basal-myoepithelial compartment, giving the mesenchymal subtype, while the luminal route gives the basal-like subtype, and their within-model transplant of matched sorted fractions is the part worth reading closely. On the ovarian side, Pirttikoski et al. trace the chemoresistant HGSOC state back to a MAPK and NF-kB module that already exists in normal fallopian tube epithelium, and Qian et al. show that in human HGSOC, BRCA deficiency raises interferon and antigen presentation inside a T, NK and dendritic cell region without changing the overall tissue architecture. The ecDNA paper separates position from copy number for the first time, with the lamin B receptor as the tether. The common gap is the same in every direction: these papers deliver the cell states, the spatial maps and the molecular handles, and then stop exactly where the lab's model starts. None of them measures cGAS-STING, type I interferon, MHC class I, HLA-E or NK cell surveillance in the states they define. That gap is the lab's contribution to make.",
+ "headline": "Six papers hand over the cell states this lab works on, and not one of them scores the immune step",
+ "summary": "The strongest paper of the week is the lab's own question asked in the lab's own model class: Lev et al. argue that BRCA1 triple-negative breast cancer also starts in the basal-myoepithelial compartment, giving the mesenchymal subtype, while the luminal route gives the basal-like subtype, and their within-model transplant of matched sorted fractions is the part worth reading closely. On the ovarian side, Pirttikoski et al. trace the chemoresistant HGSOC state back to a MAPK and NF-kB module that already exists in normal fallopian tube epithelium, and Qian et al. show that in human HGSOC, BRCA deficiency raises interferon and antigen presentation inside a T, NK and dendritic cell region without changing the overall tissue architecture. On the ecDNA side, Hung and colleagues show that damaged ecDNA is swept into a single micronucleus where it stops transcribing, and that cells inheriting it do worse, while Wang et al. separate ecDNA position from copy number with the lamin B receptor as the tether. The common gap is the same in every direction: these papers deliver the cell states, the spatial maps and the molecular handles, and then stop exactly where the lab's model starts. The micronucleus paper is the sharpest case, since it puts oncogenic DNA into the exact compartment the lab's BRCA1 chain begins in and then measures fitness and survival rather than cGAS, interferon, MHC class I or NK surveillance. That gap is the lab's contribution to make.",
  "cross_links": [
+  "The micronuclear ecDNA paper is the bridge the lab has been waiting for, and it stops one step short. Replication stress sweeps damaged ecDNA into a single micronucleus, which is precisely the cytosolic DNA source the lab's BRCA1 model starts from, yet the paper measures no cGAS, STING, interferon, MHC or NK readout anywhere. Its only immune-shaped item is one hallmark enrichment panel in hydroxyurea treated versus untreated bulk cells, with no direction of change reported and no link to the micronucleated cells themselves, so it cannot be read as an immune result. Worth noting in the other direction: they use Lamin B1 to argue these micronuclei keep an intact inner membrane, which if it holds would make them poor cGAS substrates, so the lab should test rupture directly rather than assume it.",
   "Lev and Mohd use Cre drivers that mark the same compartment. Lev argues that Wap-Cre basal-myoepithelial cells give rise to the mesenchymal TNBC subtype, and Mohd's PARP inhibitor tumors come from K14-Cre, a basal and myoepithelial driver, so Mohd's olaparib sensitivity and resistance maps may be reporting one lineage rather than BRCA1 tumors in general. Reading the two together is the cheapest way to test that.",
   "Pirttikoski puts the MAPK and NF-kB module at the LATE end of the fallopian tube trajectory, which is the opposite orientation to the lab's model, where NF-kB and JAK/STAT favour a progenitor-like, less differentiated state. Their axis is RNA velocity latent time in secretory cells with ciliated cells excluded, so it may not be the lab's differentiation axis at all. Scoring the lab's own markers against their modules E7 and E9 would settle it, and their unused E1 module is the JAK/STAT one.",
   "Qian is the human readout the lab's BRCA1 model predicts, but in the ovary rather than the breast: BRCA deficiency associated with higher interferon alpha and gamma, higher antigen processing and presentation and higher TNF and NF-kB signalling, in a region genuinely enriched for T, NK and dendritic cells. It is corroboration one organ over, not a test of the breast chain, and MHC appears only as an aggregate score with no HLA-C, HLA-E or NKG2A breakout.",
   "Pirttikoski and Qian both carry large stromal and immune compartments that they annotate and then use only as a reference: 18,974 stromal and 80,764 immune cells in the DECIDER cohort, and a fibroblast to lipid-associated macrophage CXCL12 and CXCR4 axis in Qian. Neither paper asks whether estrogen does anything to those cells, which is exactly the lab's question."
  ],
  "actions": [
+  "Take the micronucleus paper's induction and readout toolkit and run the lab's own immune panel on it: hydroxyurea at 50 to 80 micromolar for 24 hours to 3 days as the replication stress, oncogene FISH with a centromere probe to call micronuclei oncogene-positive, and targeted Cas9 cutting of one ecDNA species as a non-genotoxic way to force an amplicon into a micronucleus. Then score cGAS recruitment, micronuclear rupture, interferon and MHC class I, which is the step they did not take.",
   "Score Lev's tumor basal and fetal-like basal states, and their luminal-derived counterparts, for the lab's interferon and MHC class I panel. Their immunocompetent material is the spontaneous Wap-Cre glands and tumors only, since the transplants went into NSG mice, and the paper's data deposition is not stated in the retrievable text, so it may be worth writing to Lawson.",
   "Take Pirttikoski's modules E7 and E9 and score the lab's progenitor and differentiation markers against them, to decide whether their late NF-kB axis and the lab's progenitor-like NF-kB state are the same axis read in opposite directions. Their E1 module is the JAK/STAT one and they never follow it up.",
   "Borrow Qian's analysis template for the lab's own spatial work: patient-level aggregation of spot scores, join count analysis as a negative control for architecture, and a treatment-adjusted linear model as a sensitivity check.",
@@ -4330,6 +4332,977 @@
     }
    },
    "source_note": "Read the full text of the bioRxiv preprint version of this paper (same title and author list, Mohd ON, Wang L, Sardella BR, Jou D, Wulf GM, Slack FJ, Heng YJ, Doyle PS; preprint DOI 10.64898/2026.01.12.698824, posted 2026-01-12) at https://www.biorxiv.org/content/10.64898/2026.01.12.698824v1.full, because the eLife version of record (DOI 10.7554/eLife.112264) is not indexed in Europe PMC (DOI and title searches both returned no eLife record, and the preprint record PPR1228307 has no full-text deposit) and both elifesciences.org and api.elifesciences.org were blocked before the request was sent, so no peer-reviewed changes, eLife assessment or reviewer comments were seen; from the preprint I had the Introduction, all four Results subsections, the complete legends of main Figures 1 to 4, the full Methods and the Discussion and Conclusion, but the deposit carries no abstract on the full-text page (the abstract content here is from the Europe PMC record and the bioRxiv abstract page, in summary form rather than verbatim), no supplementary material at all, so the legends and contents of Supplementary Figures S1 to S7 and Supplementary Tables S1 and S2 were unavailable and with them the names of four of the seven profiled microRNAs, no figure graphics or page numbers (so every FigureNote page is 0), equations 1 and 2 for the immune-to-tumor ratio appear only as images and could not be read, survival-study group sizes and the LDA hyperparameters are not stated in the text, and the article contains no data availability, code availability, funding or competing-interest statement, so no dataset or code is available for reanalysis.",
+   "figures_withheld": false
+  },
+  {
+   "key": "10-1038-s41588-026-02782-w",
+   "title": "Micronuclear ecDNA constrains tumor cell fitness and is associated with favorable patient survival",
+   "first_author": "Bruckner",
+   "authors": "Lotte Bruckner, Robin Xu, Jun Tang, et al.",
+   "journal": "Nature Genetics",
+   "tier": 2,
+   "pub_date": "2026-10-12",
+   "doi": "10.1038/s41588-026-02782-w",
+   "pmid": "42864499",
+   "pmcid": null,
+   "topics": [
+    "ecdna_er_positive"
+   ],
+   "is_preprint": false,
+   "is_open_access": true,
+   "oa_url": "https://www.nature.com/articles/s41588-026-02782-w.pdf",
+   "relevance": 9,
+   "reading": {
+    "bibliographic": {
+     "title": "Micronuclear ecDNA constrains tumor cell fitness and is associated with favorable patient survival",
+     "first_author": "Br\u00fcckner",
+     "journal": "Nature Genetics",
+     "year": "2026",
+     "doi": "10.1038/s41588-026-02782-w"
+    },
+    "one_line_takeaway": "When extrachromosomal DNA is damaged by replication stress it detaches from chromosomes as a cluster, is trapped en masse in a single micronucleus where it loses H3K27ac and stops transcribing its oncogene, and the cell that inherits that micronucleus divides more slowly and dies more often, which at the patient level tracks with better survival in MYCN-amplified neuroblastoma.",
+    "tldr": "ecDNA is acentric and normally rides along with chromosomes during mitosis by tethering to them, so how it ends up in micronuclei and what that costs the tumor was unknown. Using matched ecDNA versus HSR cell line pairs, oncogene FISH on 275 patient biopsies, live-cell imaging of fluorescently tagged MYC ecDNA, laser microdissection sequencing of single micronuclei, ChIP-seq, RNA-seq and a retrospective neuroblastoma cohort, the authors show that ecDNA is the dominant source of micronuclei in ecDNA-positive cancers and that hydroxyurea-induced replication stress makes damaged ecDNAs coalesce into one cluster, partly via MDC1-CIP2A-TOPBP1, and segregate into a single micronucleus in one daughter cell. Micronuclear ecDNA loses H3K27ac, loses RNA polymerase II serine 5 phosphorylation and largely stops transcribing its oncogene. Daughter cells that inherit a large ecDNA-containing micronucleus take longer to divide again and die more often, and in 86 children with MYCN-amplified neuroblastoma a higher fraction of ecDNA-positive micronuclei at diagnosis was associated with longer overall and event-free survival. The paper stops at fitness and survival and does not measure cGAS, STING, interferon protein or any immune cell readout.",
+    "research_question": "How do micronuclei arise in ecDNA-driven tumors, what is actually inside those micronuclei, and does sequestering oncogene-bearing ecDNA into a micronucleus change cancer cell fitness and patient outcome?",
+    "background": "ecDNA is circular, chromatinized, roughly 1 to 2 megabases of DNA that carries oncogenes and their enhancers, and across cancer types its presence tracks with worse outcome than linear chromosomal amplification. Because ecDNA almost certainly has no centromere, it cannot be pulled apart by the mitotic spindle in the normal way and instead depends on tethering to chromosomes to be passed on, which produces uneven, non-Mendelian inheritance and fuels heterogeneity. Separately, micronuclei are small membrane-bound bodies that form at the end of mitosis around chromatin that was left out of the main nucleus; chromatin inside them is known to be epigenetically and transcriptionally silenced and prone to chromothripsis. Earlier work had hinted at a link, since treating ecDNA-bearing cells with hydroxyurea or other DNA-damaging agents raises micronucleus frequency and lowers oncogene levels, and micronuclei can act as intermediates in ecDNA generation. What was missing was a direct account of how micronuclei are generated in ecDNA-positive tumors, what genomic material they actually contain, and whether this helps or hurts the tumor. This paper fills that gap.",
+    "study_design": "Three layers of evidence. (1) Cell lines: near-isogenic pairs in which the same oncogene sits either on ecDNA or in a chromosomally integrated homogeneously staining region (HSR), namely COLO 320DM versus COLO 320HSR (colorectal, MYC), GBM39EC versus GBM39HSR (glioblastoma, EGFRvIII) and PC3DM versus PC3-HSR (prostate, MYC); plus neuroblastoma lines CHP-212, TR-14, STA-NB10DM, UKF-NB6, Lan5 and SMS-KAN, and small-cell lung line DMS273 which carries MYC and MYCL on separate ecDNA species. COLO 320DM-Tg19 carries TetO-tagged MYC ecDNA visualized with TetR-mNeonGreen plus H2B-emiRFP670 for live imaging. (2) A genetic control for oncogene dose: mouse adult neural stem cells from Trp53 floxed, Myc extrachromosomal-allele mice that form Myc ecDNA after Cre, compared with Trp53 floxed cells overexpressing chromosomally integrated Myc at matched MYC protein levels. (3) Patients: 275 FISH-scored tumor biopsies across neuroblastoma (MYCN, n = 177), breast cancer (ERBB2, n = 58), non-small cell lung cancer (MET n = 29, KRAS n = 8) and liposarcoma (MDM2, n = 3), of which 236 entered the micronucleus frequency comparison and 148 the copy-number stratification; and a separate survival cohort of 86 children with MYCN-amplified, ecDNA-positive neuroblastoma selected from 387 diagnostic biopsies, all sampled before treatment and enrolled in German GPOH trials NB97 (n = 2), NB2004 (n = 67) and the NB2016 registry (n = 17), with median follow-up 6.8 years. The main perturbation throughout is hydroxyurea at 50 to 80 micromolar, with doxycycline-inducible shRNA knockdown of CIP2A, TOPBP1 and MDC1, the CIP2A-lowering compound TD19, CRISPR-Cas9 cutting of ecDNA, and nucleotide transfection as a rescue. Key comparisons are always ecDNA versus HSR, micronucleus versus matched primary nucleus, and hydroxyurea versus untreated.",
+    "key_methods": [
+     {
+      "name": "Oncogene-specific DNA FISH with Hoechst or DAPI counterstain",
+      "plain_explanation": "Fluorescence in situ hybridization uses a fluorescently labelled DNA probe that sticks only to one specific stretch of the genome, for example the MYC or MYCN gene. Under the microscope that stretch shows up as a coloured dot. A separate dye (Hoechst or DAPI) stains all DNA, so you can see the main nucleus and any small extra DNA-containing bodies beside it. By asking whether a micronucleus contains the oncogene dot, you can label each micronucleus as oncogene-positive or oncogene-negative.",
+      "how_used": "Applied to the three isogenic ecDNA versus HSR cell line pairs, to seven neuroblastoma lines, to mouse adult neural stem cells with Myc probes, and to 275 patient biopsies with probes against MYCN, ERBB2, KRAS, MET or MDM2. Probes were commercial Vysis and ZytoLight dual-colour sets; ecDNA copy number per cell was estimated by counting FISH foci with the Find Maxima function in FIJI. A chromosome 2 centromere probe was used alongside MYCN so that true ecDNA foci could be told apart from whole chromosomes. Triple FISH for CDK4, MYCN and MDM2 was used in TR-14 to test whether different ecDNA species share a micronucleus.",
+      "why_it_matters": "This is the backbone readout of the whole paper, and it is the one assay that could be run on archival patient material. The caveat is that it is a single optical section of a fixed cell, scored partly by hand, so micronucleus counts depend on thresholding and on the plane imaged, and the authors state that the images were not analysed blinded."
+     },
+     {
+      "name": "Hydroxyurea-induced replication stress",
+      "plain_explanation": "Replication stress means that DNA replication forks, the moving machines that copy DNA, slow down or stall, which leaves stretches of unreplicated or broken DNA behind when the cell enters mitosis. Hydroxyurea produces this by blocking ribonucleotide reductase and so starving the cell of the nucleotide building blocks that replication needs. It is a controlled, reversible way to create DNA damage that is concentrated at hard-to-replicate regions.",
+      "how_used": "Cells were treated with 50 to 80 micromolar hydroxyurea for 24 hours up to 3 days, then scored for anaphase DNA clusters, gammaH2AX, micronucleus frequency, micronuclear oncogene content, histone marks and transcription. Nanopore sequencing with EdU and BrdU labelling (DNAscent and forkSense) was used to measure replication fork speed separately on circular ecDNA reads and on linear chromosomal reads, both untreated and after hydroxyurea. Transfection of free nucleotides was used as a rescue to prove that nucleotide depletion, and not some off-target effect of the drug, drove micronucleus formation.",
+      "why_it_matters": "It converts a correlation (ecDNA is damaged, ecDNA is in micronuclei) into a manipulable axis: add stress, get more ecDNA micronuclei. The caveat is that hydroxyurea hits the whole cell, so every downstream hydroxyurea versus control comparison, including the RNA-seq in Fig. 4k, carries general drug effects as well as micronucleation."
+     },
+     {
+      "name": "Live-cell imaging of fluorescently tagged ecDNA",
+      "plain_explanation": "An array of TetO DNA sequences was engineered into the MYC ecDNA of COLO 320DM cells; a TetR protein fused to the green fluorescent protein mNeonGreen binds that array, so every copy of the ecDNA glows green in a living cell. Histone H2B fused to the far-red protein emiRFP670 marks all chromatin. The cells are then filmed through mitosis, so you can watch where the ecDNA goes rather than inferring it from fixed snapshots.",
+      "how_used": "COLO 320DM-Tg19 cells in 96-well glass-bottom plates were imaged on a Leica DMi8 widefield microscope with a 63x objective for 60 to 72 hours, in the presence or absence of 50 micromolar hydroxyurea, with z-stacks and deconvolution. Daughter and granddaughter cells were tracked manually after a division in which at least one daughter had a micronucleus, and each was scored as divided, undivided or dead over a 72 hour window (n = 143 individual cells). Micronucleus size was recorded as larger or smaller than 2 micrometres and ecDNA content inside the micronucleus was called high or low relative to the median.",
+      "why_it_matters": "This is the only experiment that links a specific micronucleus to the later fate of the specific cell that inherited it, which is what turns a correlation into a fitness claim. The caveats are that it is one engineered cell line, the imaging is 72 hours (so it measures short-term proliferation and death, not clonal outgrowth), and scoring was manual and unblinded."
+     },
+     {
+      "name": "Laser microdissection sequencing of single micronuclei",
+      "plain_explanation": "A laser is used under the microscope to cut a single micronucleus, or its matched primary nucleus, out of a fixed cell grown on a thin membrane slide, and to drop it into a tube. The tiny amount of DNA is then amplified across the whole genome and sequenced. Comparing read coverage over the known ecDNA amplicon coordinates against coverage over the rest of the genome tells you what fraction of the DNA in that one micronucleus is circular ecDNA versus linear chromosome fragments.",
+      "how_used": "TR-14 neuroblastoma cells, which carry three distinct ecDNA species encoding MYCN, MDM2 and CDK4, were treated with 80 micromolar hydroxyurea and dissected on a Leica LMD7 or LMD7000 onto PEN membrane slides. Whole-genome amplification followed the ImmunoGAM protocol, with NEBNext Ultra II libraries sequenced on NextSeq 2000 or NovaSeq X. 18 primary nuclei, 27 single micronuclei and 6 pooled micronucleus samples (5 to 10 micronuclei each) were sequenced, with coverage computed in 25 kb bins over the amplicon coordinates and 100 kb flanks.",
+      "why_it_matters": "It is the only direct molecular inventory of what a micronucleus contains, and it produced the paper's cleanest surprise: 24 of 26 ecDNA-positive micronuclei (92.3 per cent) had no detectable linear chromatin fragment. The caveat is small n, one cell line, and a whole-genome amplification step that can introduce coverage bias on single-cell-scale input."
+     },
+     {
+      "name": "Combined immunofluorescence with FISH (ImmunoFISH) on anaphase and interphase cells",
+      "plain_explanation": "Antibodies against a protein or a histone modification are used to stain fixed cells, and in the same cells a DNA FISH probe marks the oncogene. This lets you ask whether a specific protein sits on the specific piece of DNA you care about, rather than just in the cell. Here the antibodies were against gammaH2AX (phosphorylated histone H2AX, a marker of DNA double-strand breaks), phosphorylated RPA2 serine 33 (a marker of replication stress), CIP2A, TOPBP1, MDC1, H3K27ac (a mark of active chromatin), H3K27me3 (a mark of repressed chromatin), Lamin B1 (an inner nuclear membrane protein) and RNA polymerase II phosphorylated on serine 5 of its tail (a marker of transcription initiation).",
+      "how_used": "Applied to fixed COLO 320DM and COLO 320HSR cells, CHP-212, TR-14 and other lines in anaphase and interphase, with and without hydroxyurea, to show that detached DNA clusters in anaphase are gammaH2AX-positive and ecDNA-rich, that CIP2A and TOPBP1 sit on those clusters, that Lamin B1 is higher on oncogene-positive micronuclei, and that H3K27ac and pRNAPII-S5 drop specifically on ecDNA once it is inside a micronucleus. Signal was quantified as Hoechst-normalized corrected total cell fluorescence.",
+      "why_it_matters": "This is what lets the authors say which protein is on which DNA at which stage of mitosis, and it is the evidence that micronuclear ecDNA is epigenetically remodelled rather than simply diluted. The caveat is that fluorescence intensity ratios in small, bright micronuclei are sensitive to focus, background and the chosen normalization."
+     },
+     {
+      "name": "Chromatin immunoprecipitation sequencing, intron RNA FISH and bulk RNA sequencing",
+      "plain_explanation": "ChIP-seq pulls down DNA bound by a chosen histone modification using an antibody and sequences it, giving a genome-wide map of where that mark sits. Intron RNA FISH uses probes against the intron sequences of a gene; introns are spliced out and destroyed quickly, so an intron signal means the gene is being actively transcribed right now at that spot rather than that old mRNA is lying around. Bulk RNA sequencing counts all mRNA in a population of cells, so you can see which genes and which gene programs go up or down.",
+      "how_used": "H3K27ac and H3K27me3 ChIP-seq was done in COLO 320DM cells treated with hydroxyurea versus untreated (one biological and one technical replicate per condition, NovaSeq X, reads aligned to GRCh38), showing reduced H3K27ac over the MYC ecDNA locus. Intron RNA FISH for MYC was scored in COLO 320DM (n = 102 micronuclei), GBM39EC (n = 109) and PC3DM (n = 104) to classify each micronucleus as transcribing or non-transcribing. RNA-seq compared hydroxyurea-treated with DMSO-treated COLO 320DM cells in three replicates, analysed with DESeq2 and GSEA against the MSigDB hallmark collection.",
+      "why_it_matters": "Together these supply the mechanism offered for the fitness penalty: ecDNA inside a micronucleus is epigenetically shut down and stops producing oncogene mRNA. Two caveats matter. The ChIP-seq is a single biological replicate per condition. And the RNA-seq is a whole-population hydroxyurea versus DMSO comparison, so the hallmark gene sets it returns cannot be attributed to micronucleated cells specifically."
+     }
+    ],
+    "key_concepts": [
+     {
+      "term": "Extrachromosomal DNA (ecDNA)",
+      "plain_definition": "ecDNA is a circular piece of DNA, typically about one to two million base pairs long, that sits in the nucleus of a cancer cell separately from the normal chromosomes. It is packaged into chromatin like a chromosome, and it usually carries one or more oncogenes together with the enhancer sequences that drive them, so a cell can end up with tens or hundreds of copies of an oncogene. Because ecDNA appears to lack a centromere, the structure that the mitotic spindle grabs to pull chromosomes apart, it cannot be divided evenly between daughter cells; it is instead thought to hitch a ride by sticking to chromosomes. In this paper ecDNA is both the object of study and the thing that ends up inside micronuclei."
+     },
+     {
+      "term": "Micronucleus (MN)",
+      "plain_definition": "A micronucleus is a small, separate, membrane-wrapped body of DNA that sits in the cytoplasm next to the main nucleus. It forms at the end of mitosis when a chromosome or a chromosome fragment fails to make it into the reforming main nucleus and instead gets its own small nuclear envelope. Micronuclei are a classic sign of chromosomal instability. The chromatin inside them is handled badly by the cell: it replicates poorly, it is often damaged, it can be shattered and stitched back together (chromothripsis), and it is usually epigenetically silenced. In this paper micronuclei are shown to be, in ecDNA-positive cancers, mostly containers of ecDNA rather than of chromosome fragments."
+     },
+     {
+      "term": "Homogeneously staining region (HSR)",
+      "plain_definition": "An HSR is an oncogene amplification that has been re-inserted into a chromosome, producing a long tandem array of copies that stains uniformly along one stretch of a chromosome arm. Functionally it is the linear counterpart of ecDNA: the same oncogene at high copy number, but attached to a centromere-bearing chromosome and therefore inherited evenly at mitosis. Cell line pairs that differ only in whether the amplification is ecDNA or HSR, such as COLO 320DM versus COLO 320HSR, are the key control in this paper, because they let the authors separate effects of high oncogene dose from effects of the DNA being extrachromosomal."
+     },
+     {
+      "term": "Replication stress",
+      "plain_definition": "During S phase a cell copies its DNA using replication forks, moving protein machines that unwind the double helix and synthesize new strands. Replication stress is the condition in which these forks slow down, stall or collapse, for example because the cell has run out of nucleotide building blocks, because the DNA is hard to copy, or because transcription machinery is in the way. The consequence is incompletely replicated and broken DNA that the cell carries into mitosis. Hydroxyurea is the classic way to induce it in the laboratory because it blocks the enzyme that makes the deoxynucleotides. In this paper replication stress is the switch that converts occasional ecDNA mis-segregation into frequent, clustered micronucleation."
+     },
+     {
+      "term": "Chromosomal tethering of ecDNA",
+      "plain_definition": "Since ecDNA has no centromere of its own, the leading model for how it is still passed to daughter cells is that it sticks to the surface of normal chromosomes during mitosis and is carried along with them. Several molecular mechanisms for this hitchhiking have been described, including chromatin acetylation readers, non-coding RNA bridges and sequence elements on the ecDNA itself. The practical consequence is that inheritance is uneven but not random, and that anything which breaks the tether (such as DNA damage on the ecDNA) throws the ecDNA out of the dividing nucleus. This paper shows that broken tethering is what feeds ecDNA into micronuclei."
+     },
+     {
+      "term": "Clustered detachment and collective micronucleation",
+      "plain_definition": "Rather than each ecDNA molecule going its own way, this paper finds that damaged ecDNAs stick to each other and come off the chromosomes as one lump during anaphase, and that this lump is then wrapped in a single nuclear envelope in just one of the two daughter cells. The practical signature is that a cell with dozens of ecDNA copies ends up with roughly one micronucleus rather than dozens, and that micronucleus is very rich in ecDNA. The authors show this holds even when a cell carries several structurally different ecDNA species, which all end up in the same micronucleus together."
+     },
+     {
+      "term": "MDC1-CIP2A-TOPBP1 complex",
+      "plain_definition": "These three proteins form a complex that binds damaged DNA in mitosis and holds broken, acentric fragments together so that they travel as a unit rather than scattering. MDC1 is a DNA damage mediator recruited to gammaH2AX, TOPBP1 is a scaffold for DNA damage signalling, and CIP2A partners with TOPBP1 on mitotic chromatin. The complex is known from work on chromothripsis, where it keeps shattered chromosome pieces together. In this paper it is shown to be at least partly responsible for keeping damaged ecDNAs clustered in anaphase, which is what commits them to one shared micronucleus."
+     },
+     {
+      "term": "H3K27ac and H3K27me3",
+      "plain_definition": "These are chemical tags on the tail of histone H3, the protein that DNA wraps around. Acetylation of lysine 27 (H3K27ac) marks active enhancers and promoters, so it is a signature of DNA that is being transcribed. Trimethylation of the same lysine (H3K27me3) is placed by Polycomb and marks repressed chromatin. ecDNA normally carries high H3K27ac and low H3K27me3, which is part of why its oncogenes are so highly expressed. The paper's result is that once ecDNA ends up in a micronucleus it loses H3K27ac while keeping its low H3K27me3, a combination that the authors suggest distinguishes micronuclear ecDNA from micronuclear linear chromatin fragments."
+     },
+     {
+      "term": "RNA polymerase II serine 5 phosphorylation (pRNAPII-S5)",
+      "plain_definition": "RNA polymerase II is the enzyme that transcribes protein-coding genes. It has a repetitive tail whose phosphorylation state reports what the enzyme is doing: phosphorylation of serine 5 marks polymerase that has just initiated transcription at a promoter. Staining for pRNAPII-S5 is therefore a way to ask whether a given piece of chromatin is actively starting transcription. In this paper micronuclei have much lower pRNAPII-S5 than matched primary nuclei, which is the protein-level evidence that micronuclear DNA, including ecDNA, is transcriptionally shut down."
+     },
+     {
+      "term": "Corrected total cell fluorescence (CTCF)",
+      "plain_definition": "CTCF is a simple quantification used throughout the imaging in this paper: for a region of interest drawn around a nucleus or micronucleus, you take the integrated fluorescence intensity and subtract the background expected for that area. Here it is further normalized to the Hoechst DNA signal so that a bright micronucleus is not called positive just because it is dense. Note that in this paper CTCF means corrected total cell fluorescence and has nothing to do with the CTCF chromatin insulator protein, which is a common source of confusion."
+     },
+     {
+      "term": "Event-free and overall survival, and the hazard ratio",
+      "plain_definition": "Overall survival is the time from diagnosis to death from any cause; event-free survival is the time to disease progression, relapse or death, whichever comes first. A Cox proportional hazards model estimates a hazard ratio, which is the relative instantaneous risk of the event in one group compared to another, or per unit increase of a continuous variable. A hazard ratio below 1 means lower risk. In this paper the hazard ratio for overall survival per one percentage point more ecDNA-positive micronuclei is 0.951, which the authors translate as a 4.9 per cent lower risk of death for each extra percentage point."
+     },
+     {
+      "term": "Non-Mendelian (random) ecDNA inheritance",
+      "plain_definition": "For ordinary chromosomes, each daughter cell gets exactly one copy of each, which is Mendelian segregation. ecDNA instead distributes roughly at random because it has no centromere, so a cell with 100 copies might give 60 to one daughter and 40 to the other. This randomness is normally described as the engine of ecDNA-driven heterogeneity and rapid adaptation. This paper argues that micronucleation adds a second, non-random layer on top: when ecDNA is damaged it goes en masse into a single micronucleus in one daughter cell, which makes inheritance markedly asymmetric rather than merely noisy."
+     }
+    ],
+    "figures": [
+     {
+      "label": "Fig. 1",
+      "page": 3,
+      "title": "Cancer cells and tumors with ecDNA have more micronuclei than those with chromosomal amplifications",
+      "question": "Is ecDNA, rather than general chromosomal instability or high oncogene dose, what drives micronucleus formation in ecDNA-positive cancers?",
+      "how_to_read": "Panels a and d are schematics of the cell line and patient designs. Panel b plots the percentage of cells with a micronucleus, split into oncogene-negative micronuclei (left block) and oncogene-positive micronuclei (right block), for three ecDNA versus HSR pairs; each dot is an experimental replicate. Panel c shows, for each isogenic pair, the percentage of all micronuclei that contain the oncogene, with lines joining the HSR and ecDNA member of each pair. Panel e repeats the b layout in 236 primary tumors grouped as not amplified, chromosomally amplified or ecDNA-positive, one dot per patient. Panel f shows the oncogene-positive fraction of micronuclei per oncogene cohort. Panel g shows example micrographs with Hoechst in grey, oncogene FISH in magenta and a chromosome 2 centromere probe in yellow; arrowheads mark micronuclei. Panels h and i compare cells in the bottom 30 per cent versus top 30 per cent of ecDNA copy number, in cell lines and in tumors. Panel j bins ecDNA copy number into deciles and plots micronucleation frequency against it. Panel k is the mouse neural stem cell design plus a MYC immunoblot showing matched MYC protein in Myc-ecDNA and Myc-overexpressing cells, and panel l is the micronucleus readout in those mouse cells.",
+      "key_result": "ecDNA-positive lines have significantly more oncogene-positive micronuclei than their HSR counterparts (P < 0.01 to P < 0.0001) while oncogene-negative micronucleus frequency is unchanged, so the excess is ecDNA-specific and not generic chromosomal instability. The same pattern holds in primary tumors. Micronucleation scales with ecDNA copy number: panel j gives y = 0.117x + 2.782, R squared = 0.835, P = 1.81 x 10 to the minus 8, over 148 tumors and 7 cell lines. Critically, mouse neural stem cells with Myc on ecDNA have elevated micronuclei while cells overexpressing chromosomally integrated Myc at the same MYC protein level do not (P < 0.001), ruling out oncogene dose as the cause. A binomial model elsewhere in the text puts the per-division ecDNA mis-segregation rate at 1.7 per cent (range 0 to 7.8 per cent).",
+      "importance": "core"
+     },
+     {
+      "label": "Fig. 2",
+      "page": 5,
+      "title": "Replication stress drives clustered ecDNA detachment and micronucleation via MDC1-CIP2A-TOPBP1",
+      "question": "What mechanism puts ecDNA into micronuclei, and does DNA damage on the ecDNA trigger it?",
+      "how_to_read": "Panel a is the experimental schematic (live imaging plus ImmunoFISH, with hydroxyurea, Cas9 double-strand breaks and clustering as the perturbations). Panel b is a time series of a living COLO 320DM-Tg19 cell with MYC ecDNA in green and chromatin in magenta, through mitosis, with dotted outlines marking micronuclei. Panels c and d show CHP-212 anaphases with or without a detached ecDNA cluster and the ecDNA copy number in each class (n = 52 anaphases). Panels e to g compare ecDNA and HSR lines, untreated (UT) versus hydroxyurea (HU), for the fraction of anaphases with a detached cluster and for the fraction of those clusters that are gammaH2AX-positive. Panels h to j show micronucleus frequency and MYC FISH signal inside micronuclei in COLO 320DM versus COLO 320HSR with and without hydroxyurea. Panels k and l show that CRISPR-Cas9 cutting of MYC ecDNA increases the detached ecDNA fraction. Panels m to o show CIP2A and TOPBP1 on the detached cluster, and the loss of clustering when CIP2A, TOPBP1 or MDC1 is knocked down with doxycycline-inducible shRNA.",
+      "key_result": "ecDNA detaches from chromatids as clusters during mitosis and is packaged into a single micronucleus; cells with detached clusters have higher ecDNA copy number (P < 0.0001). Hydroxyurea strongly increases untethered gammaH2AX-positive ecDNA clusters in anaphase in ecDNA lines but not in HSR lines, and increases oncogene-positive micronucleus frequency and the MYC FISH signal within micronuclei only in COLO 320DM (P < 0.0001). Even in cells with many ecDNA copies, each daughter typically receives a single micronucleus (mean 1.03 per cell in CHP-212 and 1.19 in COLO 320DM). Targeted Cas9 cutting of MYC ecDNA alone raises the detached ecDNA fraction (P < 0.05). Knockdown of CIP2A, TOPBP1 or MDC1 reduces anaphase chromatin clustering in the presence but not the absence of hydroxyurea, without changing overall detachment frequency.",
+      "importance": "core"
+     },
+     {
+      "label": "Fig. 3",
+      "page": 6,
+      "title": "Collective entrapment of structurally distinct ecDNAs in the same micronucleus",
+      "question": "What is physically inside a single micronucleus in a cell that carries several different ecDNA species, and does linear chromosomal DNA come along for the ride?",
+      "how_to_read": "Panel a is the laser microdissection and single-micronucleus sequencing design. Panel b is a TR-14 metaphase spread with CDK4 in blue, MYCN in yellow and MDM2 in red on separate ecDNA species. Panel c is a heatmap of log2 counts per million read coverage in 25 kb bins across the three amplicons and their flanks, with rows grouped as primary nuclei (n = 18), single micronuclei (n = 27) and pooled micronuclei (n = 6); red means high coverage. Panel d plots the log2 ratio of circular to linear read coverage for each of those three sample classes. Panel e plots, for each micronucleus, cumulative ecDNA length against cumulative linear chromosome fragment length, with the inset pie giving the fraction of ecDNA-positive micronuclei that contained ecDNA only. Panel f compares the amplicon-size normalized fraction of circular reads mapping to each ecDNA species in primary nuclei versus micronuclei. Panel g is a triple-FISH micrograph of one micronucleus. Panels h to j are scatter plots correlating the fluorescence of pairs of oncogenes within the same micronucleus. Panel k counts micronuclei per cell in DMS273 cells after Cas9 cutting of MYC, classified by whether they contain MYC, MYC plus MYCL, MYCL alone, or no amplicon.",
+      "key_result": "After hydroxyurea, 70 per cent of micronuclei were strongly enriched for all three ecDNA species at once. Micronuclei were markedly enriched for circular over linear DNA compared with their own primary nuclei. 24 of 26 ecDNA-positive micronuclei (92.3 per cent) had no detectable linear chromatin fragment, with only 2 of 26 (7.7 per cent) containing both. Oncogene signals within a micronucleus correlated tightly with each other: CDK4 with MDM2 R = 0.65 (P = 9.6 x 10 to the minus 5), CDK4 with MYCN R = 0.73 (P = 5.6 x 10 to the minus 6), MDM2 with MYCN R = 0.81 (P = 2.4 x 10 to the minus 8). In DMS273 cells, cutting only MYC ecDNA increased micronuclei containing MYC and also dragged the untargeted MYCL ecDNA into the same micronucleus (P < 0.01).",
+      "importance": "core"
+     },
+     {
+      "label": "Fig. 4",
+      "page": 7,
+      "title": "ecDNA inside micronuclei loses H3K27ac and largely stops transcribing its oncogene",
+      "question": "Once ecDNA is trapped in a micronucleus, is it still chromatin-active and still producing oncogene mRNA?",
+      "how_to_read": "Panel a is the schematic separating anaphase and interphase readouts. Panels b and c show H3K27ac and H3K27me3 immunofluorescence on ecDNA versus chromosomes in anaphase, quantified as Hoechst-normalized CTCF. Panels d and e repeat this for micronuclei versus primary nuclei after hydroxyurea. Panel f is a ChIP-seq difference track (hydroxyurea minus DMSO, delta counts per million) over the MYC locus, showing loss of H3K27ac. Panels g and h show pRNAPII-S5 immunofluorescence and its quantification in micronuclei versus primary nuclei. Panel i shows MYC intron RNA FISH images plus a stacked bar chart of transcribing versus non-transcribing micronuclei in COLO 320DM (n = 102), GBM39EC (n = 109) and PC3DM (n = 104). Panel j plots MYC mRNA z-score in DMSO versus hydroxyurea bulk RNA-seq. Panel k is a dot plot of significantly enriched MSigDB hallmark gene sets between hydroxyurea-treated and DMSO-treated COLO 320DM cells, with dot size for gene count and colour for adjusted P value. Panel l is the GSEA running enrichment plot for MYC TARGETS V2.",
+      "key_result": "In mitosis ecDNA keeps high H3K27ac and low H3K27me3 unlike bulk chromosomes, but once inside a micronucleus H3K27ac drops significantly (P < 0.0001) while H3K27me3 stays low, and ChIP-seq confirms reduced H3K27ac at the MYC ecDNA locus. Micronuclei have significantly less pRNAPII-S5 than matched primary nuclei (P < 0.001), and in all three cell lines the large majority of micronuclei show no MYC intron RNA FISH signal, meaning no active transcription. Bulk RNA-seq shows reduced MYC mRNA after hydroxyurea (P < 0.0001) and negative enrichment of MYC TARGETS V2 (adjusted P = 4.84 x 10 to the minus 9). Note for the lab: panel k also lists INFLAMMATORY RESPONSE, INTERFERON ALPHA RESPONSE, INTERFERON GAMMA RESPONSE, TNFA SIGNALING VIA NFKB, IL6 JAK STAT3 SIGNALING, COMPLEMENT and ALLOGRAFT REJECTION among the enriched hallmark sets, but the legend and main text give no direction of change for them, do not discuss them, and this is a bulk hydroxyurea versus DMSO comparison of whole cell populations, not a measurement attributable to micronucleated cells.",
+      "importance": "core"
+     },
+     {
+      "label": "Fig. 5",
+      "page": 8,
+      "title": "ecDNA-containing micronuclei reduce cell fitness and track with better neuroblastoma survival",
+      "question": "Does inheriting an ecDNA-containing micronucleus cost the daughter cell, and does that cost show up as better outcome in patients?",
+      "how_to_read": "Panel a is the live imaging design: 24 hours of 50 micromolar hydroxyurea, then 72 hours of imaging, tracking a parent cell P to daughters F1 and granddaughters F2, with each cell scored as divided, undivided or dead. Panel b is a representative movie montage with chromatin in magenta and MYC ecDNA in green, with dotted circles marking micronuclei, ending in a nuclear fragmentation event at 57 hours. Panel c is a stacked bar chart of cell fates (orange divided, blue cell death, green undivided) for cells with no micronuclei, with low ecDNA micronuclei and with high ecDNA micronuclei (n = 143 cells). Panel d is the clinical design: 86 MYCN-amplified, ecDNA-positive neuroblastoma biopsies at initial diagnosis, FISH-scored for the percentage of cells with any micronucleus and the percentage with an ecDNA-positive micronucleus, then followed through standard GPOH care. Panel e is a Kaplan-Meier overall survival plot with three curves: no micronuclei (n = 46), ecDNA-positive micronuclei at or below the median of 8.3 per cent (n = 21), and above the median (n = 19). Panel f is the summary cartoon contrasting high and low ecDNA retention.",
+      "key_result": "Daughter cells inheriting a large (over 2 micrometres) ecDNA-containing micronucleus took longer to reach the next division and died more often than their sister cell without a micronucleus, with the effect strongest for high-ecDNA-content micronuclei and independent of ecDNA copy number in the primary nucleus. In patients, neither total primary-nucleus ecDNA copy number nor overall micronucleus frequency correlated with survival, but a high fraction of ecDNA-positive micronuclei was associated with longer overall survival (log-rank P = 0.032) and event-free survival. Modelled continuously, overall survival hazard ratio 0.951 (95 per cent CI 0.914 to 0.990, P = 0.015) and event-free survival hazard ratio 0.956 (95 per cent CI 0.923 to 0.990, P = 0.012), which the authors describe as a 4.9 per cent reduction in risk of death per 1 per cent increase in ecDNA-positive micronuclei. Median follow-up was 6.8 years (range 0.14 to 15.9) for 36 survivors.",
+      "importance": "core"
+     }
+    ],
+    "key_findings": [
+     {
+      "statement": "In ecDNA-positive cancers, micronuclei are predominantly made of ecDNA rather than of chromosome fragments, and the excess micronucleation is caused by the DNA being extrachromosomal rather than by high oncogene dose or by general chromosomal instability.",
+      "evidence": "Fig. 1b and 1c (three isogenic ecDNA versus HSR pairs: oncogene-positive micronuclei elevated, oncogene-negative micronuclei unchanged); Fig. 1e and 1f (236 primary tumors across five oncogene cohorts); Fig. 1k and 1l (mouse Myc-ecDNA versus Myc-overexpressing neural stem cells at matched MYC protein, micronuclei elevated only with ecDNA, P < 0.001); Fig. 3e (24 of 26 ecDNA-positive micronuclei contained no detectable linear chromatin).",
+      "strength": "strong"
+     },
+     {
+      "statement": "Replication stress, induced by hydroxyurea or by targeted Cas9 cutting of the ecDNA itself, causes damaged ecDNAs to detach from chromosomes as a single cluster in anaphase and be packaged into one micronucleus in one daughter cell.",
+      "evidence": "Fig. 2e to 2g (gammaH2AX-positive detached clusters rise with hydroxyurea in ecDNA but not HSR lines); Fig. 2h to 2j (oncogene-positive micronuclei and micronuclear MYC signal rise only in COLO 320DM); Fig. 2k and 2l (Cas9 cutting of MYC ecDNA alone raises detached ecDNA, P < 0.05); main text mean of 1.03 and 1.19 micronuclei per cell in CHP-212 and COLO 320DM; nucleotide transfection rescue in Supplementary Fig. 6c,d.",
+      "strength": "strong"
+     },
+     {
+      "statement": "The MDC1-CIP2A-TOPBP1 complex is at least partly required for damaged ecDNAs to coalesce into a single cluster, although it does not control detachment itself.",
+      "evidence": "Fig. 2m (CIP2A and TOPBP1 colocalize with detached clusters); Fig. 2n and 2o (doxycycline-inducible shRNA against CIP2A, TOPBP1 or MDC1 reduces clustered chromatin in the presence but not the absence of hydroxyurea, without changing overall detachment frequency); TD19-mediated CIP2A reduction disperses clusters in Supplementary Fig. 8c to 8f.",
+      "strength": "moderate"
+     },
+     {
+      "statement": "Structurally distinct ecDNA species in the same cell are collectively trapped in the same micronucleus, so damaging one species drags the others in with it.",
+      "evidence": "Fig. 3c (single-micronucleus sequencing of TR-14, 70 per cent of micronuclei enriched for all three species); Fig. 3f (species proportions inside a micronucleus mirror the primary nucleus); Fig. 3h to 3j (pairwise FISH correlations R = 0.65, 0.73 and 0.81); Fig. 3k (Cas9 cutting of MYC in DMS273 co-enriches untargeted MYCL in the same micronucleus, P < 0.01).",
+      "strength": "strong"
+     },
+     {
+      "statement": "ecDNA inside a micronucleus is epigenetically remodelled, losing H3K27ac while keeping low H3K27me3, and is transcriptionally silenced, so its oncogene output falls.",
+      "evidence": "Fig. 4d and 4e (reduced H3K27ac in micronuclei versus primary nuclei, P < 0.0001); Fig. 4f (ChIP-seq loss of H3K27ac over MYC); Fig. 4g and 4h (reduced pRNAPII-S5, P < 0.001); Fig. 4i (most micronuclei lack MYC intron RNA FISH signal in COLO 320DM, GBM39EC and PC3DM); Fig. 4j to 4l (reduced MYC mRNA and negative enrichment of MYC TARGETS V2, adjusted P = 4.84 x 10 to the minus 9).",
+      "strength": "moderate"
+     },
+     {
+      "statement": "A daughter cell that inherits a large ecDNA-containing micronucleus has a measurable fitness penalty: it takes longer to divide again and is more likely to die, independent of how much ecDNA remains in its primary nucleus.",
+      "evidence": "Fig. 5b and 5c (live-cell tracking of 143 COLO 320DM-Tg19 cells over 72 hours after hydroxyurea; higher death and undivided fractions for high-ecDNA micronuclei); Supplementary Fig. 13a to 13d (independence from primary-nucleus copy number).",
+      "strength": "moderate"
+     },
+     {
+      "statement": "In children with MYCN-amplified, ecDNA-positive neuroblastoma, a higher fraction of ecDNA-positive micronuclei at diagnosis is associated with longer overall and event-free survival, whereas neither total ecDNA copy number nor overall micronucleus frequency is prognostic.",
+      "evidence": "Fig. 5e (Kaplan-Meier, n = 86 split into 46 with no micronuclei, 21 at or below the 8.3 per cent median and 19 above, log-rank P = 0.032); Cox model overall survival hazard ratio 0.951 (95 per cent CI 0.914 to 0.990, P = 0.015) and event-free survival hazard ratio 0.956 (95 per cent CI 0.923 to 0.990, P = 0.012); null results for copy number and total micronuclei in Supplementary Fig. 14b to 14g.",
+      "strength": "suggestive"
+     }
+    ],
+    "limitations": [
+     "The paper measures fitness and survival only. It never measures cGAS, STING, type I interferon protein or transcript as a dedicated readout, NF-kB or IRF3 activation, MHC class I, or any immune cell. The one immune-adjacent item is a list of hallmark gene set names in Fig. 4k (inflammatory response, interferon alpha and gamma response, TNFA signaling via NFKB, complement, allograft rejection, IL6 JAK STAT3), and the legend and text give no direction of change and never discuss them.",
+     "That Fig. 4k RNA-seq is a bulk comparison of hydroxyurea-treated versus DMSO-treated COLO 320DM cells. Hydroxyurea itself activates DNA damage and stress signalling in every cell, so nothing in that panel can be attributed specifically to micronucleated cells or to micronuclear ecDNA.",
+     "No breast cancer cell line or model is used anywhere, and nothing in the paper is ER-positive. Breast cancer appears only as a 58-sample ERBB2 FISH cohort inside the 275-biopsy descriptive analysis. ESR1, CCNE1, BRCA1, estrogen and endocrine or CDK4/6 inhibitor resistance do not appear in the paper at all.",
+     "Micronucleus rupture is never assayed. Lamin B1 staining is used only to argue that oncogene-positive micronuclei have an intact inner nuclear membrane (Supplementary Fig. 2a to 2c), and there is no cGAS recruitment, no envelope collapse time course and no measure of how long these micronuclei stay intact.",
+     "The survival cohort is small and retrospective: 86 children selected from 387 biopsies, split 46 / 21 / 19, drawn from trials and a registry spanning 1991 to 2022 with different treatment eras. The PDF states that the frequency of ecDNA-positive micronuclei 'remained independently prognostic' but does not name the covariates in the Cox model, and the Nature Portfolio reporting summary marks 'a description of all covariates tested' as not applicable. Standard neuroblastoma risk factors such as age at diagnosis, stage, 1p and 11q status and ALK are not reported as adjusted for. MYCN amplification is held constant by design since all cases are MYCN-amplified.",
+     "The association is also direction-ambiguous as published: a tumor with many ecDNA-positive micronuclei may be a tumor that is losing its ecDNA, and the clinical data cannot distinguish a causal fitness penalty from micronucleus count acting as a marker of something else, for example baseline replication stress or proliferation rate.",
+     "Mechanistic depth is uneven. The ChIP-seq is one biological replicate per condition (per the reporting summary), single-micronucleus sequencing is n = 27 single micronuclei from one cell line (TR-14), and the whole-genome amplification step on single-micronucleus input can bias coverage.",
+     "Imaging scoring was manual and explicitly not blinded (per the reporting summary), micronucleus identification is threshold-dependent, and the authors themselves note that some bodies they call micronuclei may be exclusomes, a distinct cytoplasmic DNA container.",
+     "Cause and effect at the level of the micronucleus is still inferential. Hydroxyurea raises micronucleation and lowers fitness, but no experiment selectively removes a micronucleus or selectively re-silences ecDNA without replication stress, so the authors are careful to say that ecDNA silencing probably is not the only mechanism by which ecDNA-positive micronuclei affect cells.",
+     "Several key quantities (the per-division mis-segregation rate of 1.7 per cent, the replication fork and nanopore data, the nucleotide rescue, the segregation-asymmetry modelling, the TD19 experiments, the exact P values) live in supplementary figures, tables and the Supplementary Note that are not part of this PDF, so they could not be checked here."
+    ],
+    "open_questions": [
+     "Do these ecDNA-rich micronuclei rupture, and if so does cGAS bind the exposed ecDNA? Micronuclear rupture is the step that would connect this entire paper to innate immune sensing, and the paper does not test it. The Lamin B1 result suggesting intact envelopes on oncogene-positive micronuclei could even mean ecDNA micronuclei rupture less than chromosome-fragment micronuclei, which would be the opposite of what an immune model would predict.",
+     "Is the survival benefit immune-mediated at all, or purely a cell-intrinsic fitness penalty? Distinguishing these would need immune infiltrate, interferon signature or MHC class I staining on the same neuroblastoma biopsies, none of which was done.",
+     "Does ecDNA micronucleation behave the same way in ER-positive breast cancer, where the amplicons of interest are CCNE1, CDK4, MDM2, ERBB2 and ESR1 rather than MYCN, and where the relevant stress is endocrine therapy and CDK4/6 inhibition rather than hydroxyurea?",
+     "Is micronuclear ecDNA silencing permanent, or can the ecDNA be reabsorbed into a nucleus and reactivated in a later division? The 72 hour imaging window cannot answer this, and reactivation would change the therapeutic logic entirely.",
+     "Can ecDNA mis-segregation be induced pharmacologically at a dose that spares normal cells? The paper proposes targeting mitotic ecDNA retention as a vulnerability, but the only tools shown are hydroxyurea, Cas9 cutting and CIP2A, TOPBP1 or MDC1 knockdown, none of which is ecDNA-selective.",
+     "Does the MDC1-CIP2A-TOPBP1 requirement for clustering mean that inhibiting the complex would disperse ecDNA into many small micronuclei, and would that be better or worse for the tumor than one large one?"
+    ],
+    "relevance_to_lab": "This paper sits squarely on the bridge between the lab's ecDNA direction and its BRCA1 cytosolic DNA direction, but it only builds the first half of that bridge, so it should be read as mechanism and method rather than as support for the immune chain. What it delivers for the ecDNA direction is direct and usable. It establishes, with the cleanest possible control (isogenic ecDNA versus HSR pairs, plus mouse cells matched for MYC protein level), that extrachromosomal location itself drives micronucleation, and it supplies a working recipe for inducing and scoring micronuclear ecDNA: hydroxyurea at 50 to 80 micromolar for 24 hours to 3 days, oncogene FISH plus Hoechst to classify micronuclei as oncogene-positive or oncogene-negative, a chromosome centromere probe alongside to separate ecDNA foci from whole chromosomes, gammaH2AX and phospho-RPA2-S33 ImmunoFISH to read damage and replication stress on the ecDNA specifically, Lamin B1 to assess micronuclear envelope integrity, H3K27ac and H3K27me3 to read micronuclear chromatin state, pRNAPII-S5 and intron RNA FISH to read whether the oncogene in a micronucleus is still being transcribed, and laser microdissection plus whole-genome amplification to sequence a single micronucleus. Several of these are directly transplantable to the lab's ER-positive breast models, and the oncogene set the paper touches overlaps the lab's list: MDM2 and CDK4 are two of the three ecDNA species in TR-14, ERBB2 appears as a 58-sample breast FISH cohort, and MYC is the main workhorse. The CRISPR-Cas9 cut of one ecDNA species is a particularly clean tool: cutting MYC alone pulled untargeted MYCL into the same micronucleus, which is a way to force ecDNA into the cytosolic compartment without a general genotoxin. For the BRCA1 and cGAS-STING direction, be strict about what is here. The paper measures cGAS nowhere. It measures STING nowhere. It has no interferon protein or transcript readout designed as such, no NF-kB or IRF3 assay, no MHC class I, HLA-C, HLA-E or NKG2A, and no NK or CD8 T cell experiment. It never tests micronuclear rupture. The only immune-shaped item in the entire paper is panel 4k, a dot plot of significantly enriched MSigDB hallmark gene sets in bulk RNA-seq of hydroxyurea-treated versus DMSO-treated COLO 320DM cells, which happens to list inflammatory response, interferon alpha response, interferon gamma response, TNFA signaling via NFKB, IL6 JAK STAT3 signaling, complement and allograft rejection; the paper gives no direction of change for any of them, never mentions them in the text, and the comparison is confounded by hydroxyurea acting on every cell. It would be wrong to cite this paper as evidence that micronuclear ecDNA activates interferon. On models: no breast cancer cell line is used, nothing is ER-positive, and ESR1, CCNE1, BRCA1 and estrogen do not appear anywhere in the paper; breast enters only as FISH-scored archival ERBB2 tumors. The patient survival claim also needs care in lab meeting. The cohort is 86 children with MYCN-amplified neuroblastoma selected from 387 diagnostic biopsies, all pre-treatment, enrolled across GPOH trials NB97, NB2004 and the NB2016 registry spanning 1991 to 2022, split into 46 with no micronuclei, 21 at or below the 8.3 per cent median of ecDNA-positive micronuclei and 19 above. What was correlated was the percentage of tumor cells whose micronuclei contained MYCN ecDNA, scored by FISH on one diagnostic section, against overall and event-free survival. Total ecDNA copy number and overall micronucleus frequency were both null, which is reassuring in that the signal is specific, but the Cox model's covariates are not named in this PDF and the reporting summary marks covariates tested as not applicable, so 'independently prognostic' is not something the reader can verify; MYCN amplification is at least held constant by design. The authors acknowledge the retrospective design and note that they restricted to pre-therapy samples specifically to avoid treatment-induced changes in tumor genetics. Score 4: the mechanism, the assay toolkit and the ecDNA oncogene set are immediately relevant and partly borrowable for direction (1), and this is the best available description of how oncogenic DNA gets from an ecDNA into a cytosolic compartment, which is exactly the upstream step the lab's direction (2) model assumes; it falls short of 5 because there is no breast or ER-positive model, no estrogen or endocrine resistance angle, and no immune measurement of any kind, so it informs the lab's hypothesis without testing it.",
+    "relevance_score": 4,
+    "discussion_questions": [
+     "The lab's model starts with cytosolic DNA sensed by cGAS. This paper puts large amounts of ecDNA into micronuclei but never asks whether those micronuclei rupture, and its Lamin B1 data suggest oncogene-positive micronuclei have an intact inner nuclear membrane. Is micronuclear ecDNA actually available to cGAS, or is an ecDNA-rich micronucleus a sealed container that keeps DNA away from the cytosol? Could we test this directly in an ER-positive line by co-staining cGAS, Lamin B1 and oncogene FISH after hydroxyurea?",
+     "If ecDNA micronucleation really constrains tumor fitness the way the paper argues, does it also explain part of what we see in BRCA1-deficient cells, where replication stress is chronic? Are the micronuclei in our BRCA1 models made of chromosome fragments, of ecDNA, or of both, and does the composition change which immune readout we should expect?",
+     "The paper's survival result inverts the usual ecDNA story: ecDNA presence predicts worse outcome, but ecDNA in micronuclei predicts better outcome. If we were to score ecDNA-positive micronuclei in ER-positive breast tumors with CCNE1 or CDK4 amplification, would we expect the same direction, and would the confounding be worse given that endocrine therapy and CDK4/6 inhibitors are themselves replication stressors applied after the biopsy?",
+     "The DMS273 experiment, where cutting MYC ecDNA with Cas9 dragged untargeted MYCL ecDNA into the same micronucleus, is a way to force a specific amplicon into a micronucleus without a general genotoxin. Is that a cleaner entry point than hydroxyurea for asking whether micronuclear ecDNA triggers interferon signalling in our hands, since it avoids the drug confound that undermines panel 4k?",
+     "The authors propose targeting mitotic ecDNA retention as a therapeutic vulnerability, and show that knocking down CIP2A, TOPBP1 or MDC1 disperses damaged ecDNA clusters. If dispersal produces many small micronuclei instead of one large one, does that increase the chance of rupture and immune sensing, or does it just produce more silenced ecDNA? Which outcome would we actually want in an ER-positive, endocrine-resistant setting?",
+     "Fig. 4k lists interferon alpha, interferon gamma, inflammatory response and TNFA via NFKB among the hallmark sets enriched between hydroxyurea and DMSO, with no stated direction. How much weight, if any, should we give that panel, and what is the minimum experiment that would turn it into a real immune result rather than a drug effect?"
+    ]
+   },
+   "graphs": {
+    "logic_chain": {
+     "nodes": [
+      {
+       "id": "b1",
+       "kind": "background",
+       "label": "ecDNA is acentric and rides on chromosomes to be inherited",
+       "detail": "Because ecDNA has no centromere it cannot be partitioned by the spindle and instead depends on tethering to chromosomes, which makes its inheritance uneven and non-Mendelian.",
+       "figure_refs": []
+      },
+      {
+       "id": "b2",
+       "kind": "background",
+       "label": "Chromatin trapped in micronuclei is damaged and silenced",
+       "detail": "Prior work shows micronuclear chromatin undergoes chromothripsis and epigenetic remodelling and is transcriptionally repressed, and that DNA-damaging agents raise micronucleus frequency in ecDNA-bearing cells.",
+       "figure_refs": []
+      },
+      {
+       "id": "q1",
+       "kind": "question",
+       "label": "How do micronuclei form in ecDNA-driven tumors and what does it cost?",
+       "detail": "The mechanism of micronucleus generation in ecDNA-positive tumors, the molecular content of those micronuclei and their functional consequences were unknown.",
+       "figure_refs": []
+      },
+      {
+       "id": "h1",
+       "kind": "hypothesis",
+       "label": "Damaged ecDNA detaches in mitosis and is sequestered in micronuclei",
+       "detail": "If DNA damage breaks the tether that carries ecDNA through mitosis, ecDNA should be mis-segregated into micronuclei, and this should be specific to extrachromosomal rather than chromosomal amplification.",
+       "figure_refs": []
+      },
+      {
+       "id": "a1",
+       "kind": "approach",
+       "label": "Score oncogene-positive micronuclei in isogenic lines and 275 tumors",
+       "detail": "Oncogene FISH plus Hoechst in three matched ecDNA versus HSR cell line pairs, seven neuroblastoma lines, mouse Myc-ecDNA versus Myc-overexpressing neural stem cells, and 275 FISH-scored patient biopsies across five oncogene cohorts.",
+       "figure_refs": [
+        "Fig. 1"
+       ]
+      },
+      {
+       "id": "r1",
+       "kind": "result",
+       "label": "ecDNA, not oncogene dose, drives micronucleation and scales with copy number",
+       "detail": "ecDNA lines and ecDNA-positive tumors have more oncogene-positive micronuclei while oncogene-negative micronuclei are unchanged, micronucleation rises with ecDNA copy number (R squared 0.835), and mouse cells overexpressing chromosomal Myc at matched protein level show no increase.",
+       "figure_refs": [
+        "Fig. 1"
+       ]
+      },
+      {
+       "id": "a2",
+       "kind": "approach",
+       "label": "Apply replication stress and watch ecDNA through mitosis",
+       "detail": "Live imaging of fluorescently tagged MYC ecDNA plus ImmunoFISH for gammaH2AX, CIP2A, TOPBP1 and MDC1 in anaphase, with hydroxyurea, targeted Cas9 cutting of ecDNA and inducible shRNA knockdowns.",
+       "figure_refs": [
+        "Fig. 2"
+       ]
+      },
+      {
+       "id": "r3",
+       "kind": "result",
+       "label": "Replication stress makes ecDNA detach as one cluster into one micronucleus",
+       "detail": "Hydroxyurea raises untethered gammaH2AX-positive ecDNA clusters in anaphase in ecDNA but not HSR lines, and each daughter cell typically receives a single ecDNA-rich micronucleus (mean 1.03 to 1.19 per cell).",
+       "figure_refs": [
+        "Fig. 2"
+       ]
+      },
+      {
+       "id": "r4",
+       "kind": "result",
+       "label": "MDC1-CIP2A-TOPBP1 holds damaged ecDNA together as a cluster",
+       "detail": "CIP2A and TOPBP1 colocalize with detached clusters, and knocking down CIP2A, TOPBP1 or MDC1 reduces anaphase clustering under hydroxyurea without changing detachment frequency.",
+       "figure_refs": [
+        "Fig. 2"
+       ]
+      },
+      {
+       "id": "r5",
+       "kind": "result",
+       "label": "Distinct ecDNA species are collectively trapped in the same micronucleus",
+       "detail": "Laser microdissection sequencing of single TR-14 micronuclei shows 70 per cent enriched for all three ecDNA species and 92.3 per cent with no detectable linear chromatin, and cutting MYC ecDNA in DMS273 drags untargeted MYCL into the same micronucleus.",
+       "figure_refs": [
+        "Fig. 3"
+       ]
+      },
+      {
+       "id": "r6",
+       "kind": "result",
+       "label": "Micronuclear ecDNA loses H3K27ac and stops transcribing its oncogene",
+       "detail": "ecDNA in micronuclei has significantly reduced H3K27ac with persistently low H3K27me3, reduced pRNAPII-S5, and almost no MYC intron RNA FISH signal, with bulk RNA-seq showing lower MYC and negative enrichment of MYC TARGETS V2.",
+       "figure_refs": [
+        "Fig. 4"
+       ]
+      },
+      {
+       "id": "r7",
+       "kind": "result",
+       "label": "Cells inheriting ecDNA-rich micronuclei divide less and die more",
+       "detail": "Live tracking of 143 cells over 72 hours after hydroxyurea shows delayed next division and higher death in daughters that inherited a large ecDNA-containing micronucleus, independent of primary-nucleus ecDNA copy number.",
+       "figure_refs": [
+        "Fig. 5"
+       ]
+      },
+      {
+       "id": "r8",
+       "kind": "result",
+       "label": "More ecDNA-positive micronuclei at diagnosis tracks with better survival",
+       "detail": "In 86 children with MYCN-amplified neuroblastoma, a high fraction of ecDNA-positive micronuclei was associated with longer overall survival (log-rank P = 0.032; overall survival hazard ratio 0.951) while total ecDNA copy number and overall micronucleus frequency were not prognostic.",
+       "figure_refs": [
+        "Fig. 5"
+       ]
+      },
+      {
+       "id": "c1",
+       "kind": "conclusion",
+       "label": "ecDNA micronucleation is a fitness penalty, not a neutral accident",
+       "detail": "Failure to retain ecDNA during mitosis sequesters and silences the oncogene amplicon, reduces oncogene output and attenuates cancer cell aggressiveness, both in culture and at the patient level.",
+       "figure_refs": [
+        "Fig. 4",
+        "Fig. 5"
+       ]
+      },
+      {
+       "id": "i1",
+       "kind": "implication",
+       "label": "Forcing ecDNA mis-segregation is a candidate therapeutic strategy",
+       "detail": "If mitotic ecDNA retention is what keeps the oncogene expressed, then deliberately damaging ecDNA or breaking its tethering could disarm ecDNA-driven tumors, though no ecDNA-selective agent is demonstrated here.",
+       "figure_refs": []
+      },
+      {
+       "id": "i2",
+       "kind": "implication",
+       "label": "ecDNA-positive micronucleus fraction is a candidate prognostic biomarker",
+       "detail": "The readout is a single FISH stain on an archival diagnostic section, which makes it practical, but the cohort is small and retrospective and the adjusted model's covariates are not reported in the paper.",
+       "figure_refs": [
+        "Fig. 5"
+       ]
+      }
+     ],
+     "edges": [
+      {
+       "source": "b1",
+       "target": "q1",
+       "relation": "motivates"
+      },
+      {
+       "source": "b2",
+       "target": "q1",
+       "relation": "motivates"
+      },
+      {
+       "source": "q1",
+       "target": "h1",
+       "relation": "motivates"
+      },
+      {
+       "source": "h1",
+       "target": "a1",
+       "relation": "tests"
+      },
+      {
+       "source": "a1",
+       "target": "r1",
+       "relation": "shows"
+      },
+      {
+       "source": "r1",
+       "target": "h1",
+       "relation": "supports"
+      },
+      {
+       "source": "h1",
+       "target": "a2",
+       "relation": "tests"
+      },
+      {
+       "source": "a2",
+       "target": "r3",
+       "relation": "shows"
+      },
+      {
+       "source": "r3",
+       "target": "r4",
+       "relation": "leads_to"
+      },
+      {
+       "source": "r3",
+       "target": "r5",
+       "relation": "leads_to"
+      },
+      {
+       "source": "r5",
+       "target": "r6",
+       "relation": "leads_to"
+      },
+      {
+       "source": "b2",
+       "target": "r6",
+       "relation": "supports"
+      },
+      {
+       "source": "r6",
+       "target": "r7",
+       "relation": "leads_to"
+      },
+      {
+       "source": "r7",
+       "target": "r8",
+       "relation": "supports"
+      },
+      {
+       "source": "r7",
+       "target": "c1",
+       "relation": "supports"
+      },
+      {
+       "source": "r8",
+       "target": "c1",
+       "relation": "supports"
+      },
+      {
+       "source": "c1",
+       "target": "i1",
+       "relation": "leads_to"
+      },
+      {
+       "source": "c1",
+       "target": "i2",
+       "relation": "leads_to"
+      }
+     ]
+    },
+    "knowledge_graph": {
+     "entities": [
+      {
+       "id": "e1",
+       "name": "extrachromosomal DNA (ecDNA)",
+       "type": "other",
+       "description": "Circular, chromatinized, roughly 1 to 2 Mb oncogene-bearing DNA outside the chromosomes; the central object of the paper and the main content of micronuclei in ecDNA-positive cancers."
+      },
+      {
+       "id": "e2",
+       "name": "micronucleus",
+       "type": "other",
+       "description": "A small membrane-bound DNA body formed beside the main nucleus at the end of mitosis; shown here to be mostly filled with ecDNA rather than chromosome fragments."
+      },
+      {
+       "id": "e3",
+       "name": "homogeneously staining region (HSR)",
+       "type": "other",
+       "description": "Chromosomally integrated tandem oncogene amplification used throughout as the isogenic control for ecDNA."
+      },
+      {
+       "id": "e4",
+       "name": "replication stress",
+       "type": "phenotype",
+       "description": "Slowed or stalled DNA replication forks, induced here with hydroxyurea; the trigger that converts occasional ecDNA mis-segregation into frequent clustered micronucleation."
+      },
+      {
+       "id": "e5",
+       "name": "hydroxyurea",
+       "type": "drug",
+       "description": "Ribonucleotide reductase inhibitor used at 50 to 80 micromolar to deplete nucleotides and induce replication stress in essentially every experiment."
+      },
+      {
+       "id": "e6",
+       "name": "TD19",
+       "type": "drug",
+       "description": "Compound used to pharmacologically reduce CIP2A, which dispersed detached ecDNA clusters into individual foci and increased the number of small micronuclei."
+      },
+      {
+       "id": "e7",
+       "name": "MYC",
+       "type": "gene",
+       "description": "Oncogene carried on ecDNA in COLO 320DM, PC3DM and DMS273 and on an HSR in the matched control lines; the main amplicon tracked by FISH, ChIP-seq and RNA-seq."
+      },
+      {
+       "id": "e8",
+       "name": "MYCN",
+       "type": "gene",
+       "description": "Oncogene amplified on ecDNA in neuroblastoma lines and in the 86-patient survival cohort, scored by FISH in micronuclei."
+      },
+      {
+       "id": "e9",
+       "name": "MYCL",
+       "type": "gene",
+       "description": "Second, separate ecDNA species in DMS273 cells; it was co-enriched in micronuclei when only MYC ecDNA was cut with Cas9."
+      },
+      {
+       "id": "e10",
+       "name": "EGFR",
+       "type": "gene",
+       "description": "Carried as EGFRvIII on ecDNA in GBM39EC and as an HSR in GBM39HSR, one of the three isogenic pairs."
+      },
+      {
+       "id": "e11",
+       "name": "MDM2",
+       "type": "gene",
+       "description": "One of three distinct ecDNA species in TR-14 cells and the amplicon scored in the liposarcoma biopsy cohort."
+      },
+      {
+       "id": "e12",
+       "name": "CDK4",
+       "type": "gene",
+       "description": "Another of the three distinct ecDNA species in TR-14 cells, used in the triple-FISH and single-micronucleus sequencing experiments."
+      },
+      {
+       "id": "e13",
+       "name": "ERBB2",
+       "type": "gene",
+       "description": "Amplicon scored by FISH in the 58-sample breast cancer biopsy cohort within the 275-tumor descriptive analysis; the only breast cancer material in the paper."
+      },
+      {
+       "id": "e14",
+       "name": "CIP2A",
+       "type": "gene",
+       "description": "Component of the mitotic damage complex that colocalizes with detached ecDNA clusters; its knockdown or TD19-mediated reduction disperses those clusters."
+      },
+      {
+       "id": "e15",
+       "name": "TOPBP1",
+       "type": "gene",
+       "description": "Scaffold partner of CIP2A on detached ecDNA clusters; knockdown reduces clustering under hydroxyurea."
+      },
+      {
+       "id": "e16",
+       "name": "MDC1",
+       "type": "gene",
+       "description": "DNA damage mediator in the same complex; knockdown reduces anaphase chromatin clustering under hydroxyurea without changing detachment frequency."
+      },
+      {
+       "id": "e17",
+       "name": "LMNB1 (Lamin B1)",
+       "type": "gene",
+       "description": "Inner nuclear membrane protein stained to assess micronuclear envelope integrity; higher on oncogene-positive than oncogene-negative micronuclei."
+      },
+      {
+       "id": "e18",
+       "name": "gammaH2AX (phosphorylated H2AX)",
+       "type": "protein",
+       "description": "Double-strand break marker used to show that detached ecDNA clusters in anaphase are damaged, and that Cas9 cutting produces the same signature."
+      },
+      {
+       "id": "e19",
+       "name": "H3K27ac",
+       "type": "other",
+       "description": "Active chromatin mark; retained on ecDNA in mitosis but significantly lost once ecDNA is inside a micronucleus, confirmed by ChIP-seq over the MYC locus."
+      },
+      {
+       "id": "e20",
+       "name": "H3K27me3",
+       "type": "other",
+       "description": "Repressive Polycomb mark; stays low on ecDNA both in mitosis and in micronuclei, which the authors suggest distinguishes micronuclear ecDNA from micronuclear linear fragments."
+      },
+      {
+       "id": "e21",
+       "name": "RNA polymerase II phospho-serine 5 (pRNAPII-S5)",
+       "type": "protein",
+       "description": "Transcription initiation marker, significantly lower in micronuclei than in matched primary nuclei."
+      },
+      {
+       "id": "e22",
+       "name": "MYC target gene program",
+       "type": "pathway",
+       "description": "MSigDB hallmark MYC TARGETS V2 set, negatively enriched in hydroxyurea-treated COLO 320DM cells (adjusted P = 4.84 x 10 to the minus 9)."
+      },
+      {
+       "id": "e23",
+       "name": "tumor cell fitness",
+       "type": "phenotype",
+       "description": "Measured as time to the next division and probability of cell death in live-tracked daughter cells; reduced in cells inheriting large ecDNA-containing micronuclei."
+      },
+      {
+       "id": "e24",
+       "name": "overall survival",
+       "type": "phenotype",
+       "description": "Clinical endpoint in the neuroblastoma cohort, longer in patients whose diagnostic biopsy had a high fraction of ecDNA-positive micronuclei."
+      },
+      {
+       "id": "e25",
+       "name": "neuroblastoma",
+       "type": "disease",
+       "description": "The disease of the survival cohort and of several ecDNA cell lines used here; all survival cases were MYCN-amplified and ecDNA-positive."
+      },
+      {
+       "id": "e26",
+       "name": "COLO 320DM and COLO 320HSR",
+       "type": "other",
+       "description": "Near-isogenic colorectal cancer line pair carrying MYC on ecDNA or as an HSR; the main workhorse for imaging, ChIP-seq and RNA-seq."
+      },
+      {
+       "id": "e27",
+       "name": "TR-14",
+       "type": "other",
+       "description": "Neuroblastoma line carrying three distinct ecDNA species (MYCN, MDM2, CDK4), used for single-micronucleus sequencing and triple FISH."
+      },
+      {
+       "id": "e28",
+       "name": "DMS273",
+       "type": "other",
+       "description": "Small cell lung cancer line with separate MYC and MYCL ecDNA species, used to test whether damaging one species drags in the other."
+      },
+      {
+       "id": "e29",
+       "name": "mouse adult neural stem cells (Trp53 floxed, Myc ecDNA)",
+       "type": "cell_type",
+       "description": "Engineered mouse cells in which Myc sits on ecDNA or is chromosomally overexpressed at matched MYC protein level; the control that rules out oncogene dose."
+      },
+      {
+       "id": "e30",
+       "name": "oncogene-specific DNA FISH",
+       "type": "method",
+       "description": "The core readout used to classify each micronucleus as oncogene-positive or oncogene-negative in cell lines, mouse cells and archival patient biopsies."
+      },
+      {
+       "id": "e31",
+       "name": "single-micronucleus laser microdissection sequencing",
+       "type": "method",
+       "description": "Method developed here to cut out one micronucleus or its matched primary nucleus, amplify the genome and sequence it (18 primary nuclei, 27 single micronuclei, 6 pools)."
+      },
+      {
+       "id": "e32",
+       "name": "live-cell ecDNA imaging (COLO 320DM-Tg19)",
+       "type": "method",
+       "description": "TetO-tagged MYC ecDNA with TetR-mNeonGreen plus H2B-emiRFP670, used to watch detachment, micronucleation and the fate of each daughter cell over 72 hours."
+      },
+      {
+       "id": "e33",
+       "name": "GPOH MYCN-amplified neuroblastoma cohort",
+       "type": "dataset",
+       "description": "86 pre-treatment diagnostic biopsies selected from 387, from trials NB97, NB2004 and the NB2016 registry, with overall and event-free survival follow-up (median 6.8 years)."
+      }
+     ],
+     "relations": [
+      {
+       "source": "e1",
+       "target": "e2",
+       "predicate": "causes",
+       "evidence": "ecDNA-positive cells and tumors have significantly more oncogene-positive micronuclei than matched HSR cells and tumors, while oncogene-negative micronuclei are unchanged.",
+       "figure_ref": "Fig. 1",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e1",
+       "target": "e2",
+       "predicate": "enriched_in",
+       "evidence": "Single-micronucleus sequencing shows circular ecDNA reads strongly enriched over linear reads in micronuclei relative to matched primary nuclei; 24 of 26 ecDNA-positive micronuclei had no detectable linear chromatin.",
+       "figure_ref": "Fig. 3",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e5",
+       "target": "e4",
+       "predicate": "causes",
+       "evidence": "Hydroxyurea depletes nucleotides and increased markers of replication stress and DNA damage, preferentially on ecDNA; transfecting nucleotides rescued the resulting micronucleus increase.",
+       "figure_ref": "Methods and Supplementary Fig. 3, 6",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e4",
+       "target": "e2",
+       "predicate": "causes",
+       "evidence": "Hydroxyurea raised the frequency of untethered gammaH2AX-positive ecDNA clusters in anaphase and of oncogene-positive micronuclei in ecDNA lines but not HSR lines.",
+       "figure_ref": "Fig. 2",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e4",
+       "target": "e1",
+       "predicate": "associated_with",
+       "evidence": "Nanopore fork analysis showed reduced nucleotide incorporation and disproportionate fork slowing on ecDNA compared with HSRs, both untreated and after hydroxyurea.",
+       "figure_ref": "Supplementary Fig. 4",
+       "confidence": "medium",
+       "is_new_finding": false
+      },
+      {
+       "source": "e18",
+       "target": "e1",
+       "predicate": "marker_of",
+       "evidence": "Detached ecDNA clusters in anaphase stain positive for gammaH2AX, and Cas9 cutting of MYC ecDNA increases gammaH2AX foci on that amplicon.",
+       "figure_ref": "Fig. 2e-g, 2k",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e14",
+       "target": "e1",
+       "predicate": "interacts_with",
+       "evidence": "CIP2A colocalizes with detached ecDNA clusters in unperturbed cells and more so after hydroxyurea; TD19-mediated CIP2A reduction disperses the clusters.",
+       "figure_ref": "Fig. 2m and Supplementary Fig. 8",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e15",
+       "target": "e1",
+       "predicate": "interacts_with",
+       "evidence": "TOPBP1 immunofluorescence marks the detached anaphase DNA cluster alongside CIP2A.",
+       "figure_ref": "Fig. 2m",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e16",
+       "target": "e2",
+       "predicate": "prevents",
+       "evidence": "Inducible shRNA knockdown of MDC1, like CIP2A or TOPBP1 knockdown, reduced clustered chromatin in anaphase under hydroxyurea without changing overall detachment frequency.",
+       "figure_ref": "Fig. 2n,o",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e17",
+       "target": "e2",
+       "predicate": "expressed_in",
+       "evidence": "Lamin B1 staining intensity was higher in oncogene-positive than oncogene-negative micronuclei, suggesting an intact inner nuclear membrane.",
+       "figure_ref": "Supplementary Fig. 2a-c",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e2",
+       "target": "e19",
+       "predicate": "downregulates",
+       "evidence": "ecDNA in micronuclei had significantly reduced H3K27ac compared with ecDNA in mitosis and in primary nuclei after hydroxyurea, confirmed by ChIP-seq over the MYC locus.",
+       "figure_ref": "Fig. 4d-f",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e20",
+       "target": "e1",
+       "predicate": "depleted_in",
+       "evidence": "H3K27me3 stayed low on ecDNA both during mitosis and inside micronuclei, unlike bulk chromosomal DNA.",
+       "figure_ref": "Fig. 4b-e",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e2",
+       "target": "e21",
+       "predicate": "downregulates",
+       "evidence": "Micronuclei had significantly lower pRNAPII-S5 immunofluorescence than matched primary nuclei.",
+       "figure_ref": "Fig. 4g,h",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e2",
+       "target": "e7",
+       "predicate": "downregulates",
+       "evidence": "Intron RNA FISH showed most micronuclei in COLO 320DM, GBM39EC and PC3DM lack detectable nascent oncogene transcription, and bulk RNA-seq showed reduced MYC mRNA after hydroxyurea.",
+       "figure_ref": "Fig. 4i,j",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e7",
+       "target": "e22",
+       "predicate": "activates",
+       "evidence": "MYC drives the hallmark MYC target program, which is negatively enriched when micronucleation reduces MYC output after hydroxyurea.",
+       "figure_ref": "Fig. 4k,l",
+       "confidence": "medium",
+       "is_new_finding": false
+      },
+      {
+       "source": "e2",
+       "target": "e23",
+       "predicate": "downregulates",
+       "evidence": "Daughter cells inheriting a large ecDNA-containing micronucleus showed delayed progression to the next division and higher death rates than their sister cell without a micronucleus.",
+       "figure_ref": "Fig. 5b,c",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e2",
+       "target": "e24",
+       "predicate": "associated_with",
+       "evidence": "A fraction of ecDNA-positive micronuclei above the 8.3 per cent median was associated with longer overall survival (log-rank P = 0.032; hazard ratio 0.951, 95 per cent CI 0.914 to 0.990).",
+       "figure_ref": "Fig. 5e",
+       "confidence": "low",
+       "is_new_finding": true
+      },
+      {
+       "source": "e1",
+       "target": "e24",
+       "predicate": "associated_with",
+       "evidence": "Total ecDNA copy number in the primary nucleus did not correlate with survival in this cohort, in contrast to the published association of ecDNA presence with poor outcome across cancers.",
+       "figure_ref": "Supplementary Fig. 14b-g",
+       "confidence": "low",
+       "is_new_finding": true
+      },
+      {
+       "source": "e8",
+       "target": "e25",
+       "predicate": "associated_with",
+       "evidence": "All 86 survival-cohort tumors were MYCN-amplified neuroblastoma with ecDNA identified by FISH before treatment.",
+       "figure_ref": "Fig. 5d",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e9",
+       "target": "e2",
+       "predicate": "enriched_in",
+       "evidence": "Cas9 cutting of MYC ecDNA in DMS273 cells promoted MYC presence in micronuclei while also enriching the untargeted MYCL ecDNA in the same micronucleus.",
+       "figure_ref": "Fig. 3k",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e11",
+       "target": "e12",
+       "predicate": "associated_with",
+       "evidence": "MDM2 and CDK4 ecDNA fluorescence within the same micronucleus correlated positively (R = 0.65, P = 9.6 x 10 to the minus 5), as did each with MYCN.",
+       "figure_ref": "Fig. 3h-j",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e3",
+       "target": "e2",
+       "predicate": "prevents",
+       "evidence": "HSR lines showed no increase in oncogene-positive micronuclei, and hydroxyurea raised their overall micronucleus rate without putting oncogene sequences into those micronuclei.",
+       "figure_ref": "Fig. 1b, Fig. 2h-j",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e29",
+       "target": "e2",
+       "predicate": "measured_by",
+       "evidence": "Mouse neural stem cells with Myc on ecDNA had elevated Myc-positive micronuclei while Myc-overexpressing cells with chromosomal Myc at matched protein level did not, ruling out oncogene dose.",
+       "figure_ref": "Fig. 1k,l",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e30",
+       "target": "e2",
+       "predicate": "measured_by",
+       "evidence": "Oncogene FISH with Hoechst or DAPI counterstain was the primary assay for classifying micronuclei in every cell and tissue experiment.",
+       "figure_ref": "Fig. 1, Fig. 2, Fig. 3",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e31",
+       "target": "e1",
+       "predicate": "measured_by",
+       "evidence": "Laser microdissection of single micronuclei followed by whole-genome amplification and paired-end sequencing quantified circular versus linear DNA content per micronucleus.",
+       "figure_ref": "Fig. 3a-f",
+       "confidence": "high",
+       "is_new_finding": true
+      },
+      {
+       "source": "e32",
+       "target": "e23",
+       "predicate": "measured_by",
+       "evidence": "Live imaging of tagged MYC ecDNA over 72 hours tracked each daughter cell and scored it as divided, undivided or dead.",
+       "figure_ref": "Fig. 5a-c",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e33",
+       "target": "e24",
+       "predicate": "measured_by",
+       "evidence": "Kaplan-Meier and Cox proportional hazards analysis of overall and event-free survival in 86 pre-treatment GPOH neuroblastoma biopsies.",
+       "figure_ref": "Fig. 5d,e",
+       "confidence": "medium",
+       "is_new_finding": true
+      },
+      {
+       "source": "e13",
+       "target": "e2",
+       "predicate": "enriched_in",
+       "evidence": "In the 58-sample breast cancer biopsy cohort, ERBB2-amplified ecDNA-positive tumors contributed to the higher oncogene-positive micronucleus fraction seen across ecDNA-positive tumors.",
+       "figure_ref": "Fig. 1e,f",
+       "confidence": "low",
+       "is_new_finding": true
+      },
+      {
+       "source": "e6",
+       "target": "e14",
+       "predicate": "inhibits",
+       "evidence": "TD19 was used for pharmacological reduction of CIP2A expression, which dispersed Hoechst-stained ecDNA clusters and increased small micronuclei per cell.",
+       "figure_ref": "Supplementary Fig. 8c-f",
+       "confidence": "medium",
+       "is_new_finding": false
+      },
+      {
+       "source": "e1",
+       "target": "e26",
+       "predicate": "expressed_in",
+       "evidence": "COLO 320DM carries MYC on ecDNA while its near-isogenic partner COLO 320HSR carries the same amplification integrated as an HSR.",
+       "figure_ref": "Fig. 1a",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e1",
+       "target": "e27",
+       "predicate": "expressed_in",
+       "evidence": "TR-14 carries MYCN, MDM2 and CDK4 on three structurally distinct ecDNA species, confirmed by metaphase FISH and prior sequence reconstruction.",
+       "figure_ref": "Fig. 3b",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e1",
+       "target": "e28",
+       "predicate": "expressed_in",
+       "evidence": "DMS273 carries MYC and MYCL on two separate ecDNA species.",
+       "figure_ref": "Supplementary Fig. 10a",
+       "confidence": "high",
+       "is_new_finding": false
+      },
+      {
+       "source": "e10",
+       "target": "e2",
+       "predicate": "enriched_in",
+       "evidence": "GBM39EC cells, which carry EGFRvIII on ecDNA, had significantly more oncogene-positive micronuclei than GBM39HSR.",
+       "figure_ref": "Fig. 1b,c",
+       "confidence": "high",
+       "is_new_finding": true
+      }
+     ]
+    }
+   },
+   "source_note": "Read from the publisher PDF supplied by the lab (Nature Genetics, 21 pages: article pages 1 to 15 plus a 6-page Nature Portfolio Reporting Summary), covering the full text, all five main figure graphics and legends, the Methods, the data and code availability statements and the reporting summary; there are no Extended Data figures in this file, and the Supplementary Figures 1 to 14, Supplementary Tables 1 to 4, Supplementary Videos 1 to 6, the Supplementary Note (cell culture details, metaphase spread and FISH preparation, microscopy, nanopore fork analysis, single-MN sequencing analysis and the ecDNA segregation model) and the deposited datasets (ArrayExpress E-MTAB-16933 and E-MTAB-16944, ENA PRJEB112294 and PRJEB111610) were not available, so every claim attributed to a supplementary item here is reported only as the main text describes it and the exact P values in Supplementary Table 3 could not be checked.",
    "figures_withheld": false
   },
   {

@@ -23,8 +23,8 @@
    "label": "November 3, 2026",
    "date": "2026-11-03",
    "topic_label": "Estrogen microenvironment + BRCA1 / ER-negative breast + ecDNA / ER-positive breast",
-   "headline": "Five papers hand over the cell states this lab works on, and not one of them scores the immune step",
-   "count": 5,
+   "headline": "Six papers hand over the cell states this lab works on, and not one of them scores the immune step",
+   "count": 6,
    "topics": [
     "brca1_er_negative",
     "ecdna_er_positive",
@@ -68,6 +68,15 @@
      "pub_date": "2026-09-21"
     },
     {
+     "key": "10-1038-s41588-026-02782-w",
+     "title": "Micronuclear ecDNA constrains tumor cell fitness and is associated with favorable patient survival",
+     "topics": [
+      "ecdna_er_positive"
+     ],
+     "journal": "Nature Genetics",
+     "pub_date": "2026-10-12"
+    },
+    {
      "key": "10-64898-2026-09-11-751063",
      "title": "Inverted logic of ecDNA localization converts nuclear periphery into oncogenic transcription hubs in cancer",
      "topics": [
@@ -82,6 +91,7 @@
     "Multi-omics analysis of high-grade serous ovarian cancers reveals heterogeneity and distinct immunological patterns based upon clinico-genomic status",
     "Cell-of-origin shapes tumor subtype in BRCA1-associated triple-negative breast cancer",
     "MicroRNA spatial profiling for assessing drug efficacy in BRCA1-related triple-negative breast tumors",
+    "Micronuclear ecDNA constrains tumor cell fitness and is associated with favorable patient survival",
     "Inverted logic of ecDNA localization converts nuclear periphery into oncogenic transcription hubs in cancer"
    ],
    "file": "data/week-2026-11-03.json"
